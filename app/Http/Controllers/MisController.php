@@ -496,6 +496,16 @@ class MisController extends Controller
              return redirect('/professionalinfo')->with($notification);
          }
 
+         public function getSingleProfessionalInfo($id) {
+             $data = [
+                'getProfessionalInfo'=>DB::table('FA_PROFESSIONAL')->leftJoin('FA_HOUSE_TYPE', 'FA_PROFESSIONAL.h_type', '=', 'FA_HOUSE_TYPE.housetypeid')->where('professioninfoid', $id)->first()
+             ];
+            //  echo '<pre>';
+            //     print_r($data);
+            //     exit();
+             return view('layouts.mcsfa.viewProfessionalInfo', $data);
+         }
+
 
         
 

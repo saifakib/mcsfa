@@ -97,9 +97,7 @@ Route::post('/professionalinfo', [\App\Http\Controllers\MisController::class, 'p
 Route::get('/getallthebankbranch', [\App\Http\Controllers\MisController::class, 'getallthebankbranch']);
 Route::get('/editprofessionalinfo/{id}', [\App\Http\Controllers\MisController::class, 'editProfessionalInfo']);
 Route::get('/deleteprofessionalinfo/{id}', [\App\Http\Controllers\MisController::class, 'deleteProfessionalInfo']);
-
-
-
+Route::get('/professionalinfo/{id}', [\App\Http\Controllers\MisController::class, 'getSingleProfessionalInfo']);
 
 
 
