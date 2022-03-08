@@ -17,16 +17,43 @@
                             @csrf
                             <input type="hidden" name="taskstatus" value="save">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <label>Increment Date <span style="color: red">*</span></label>
+                                <div class="col-md-2">
+                                    <label>Increment Code <span style="color: red">*</span></label>
                                     <div class="form-group">
-                                        <input type="" name="increment_date" class="form-control inputtext allDate"  required="">
+                                        <input type="" name="increment_code" value="{{ $lastincrementcode }}" class="form-control inputtext" readonly required="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
+                                    <label class="form-label">Employee <span style="color: red">*</span></label>
+                                    <select style="width: 100%" name="employe_id" id="setemployeid" class="form-control inputnumber getSelect" required="">
+                                        <option value=""></option>
+                                        <?php
+                                        foreach ($emoployees['items'] as $values) {
+                                            ?>
+                                            <option name="employe_id" value="<?= $values['employe_id'] ?>">
+                                                {{ $values['name_english'] }} => {{ $values['designation'] }} => {{ $values['departement'] }}
+                                            </option>
+                                         <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Increment Date <span style="color: red">*</span></label>
+                                    <div class="form-group">
+                                        <input type="date" name="inc_date" class="form-control inputtext allDate"  required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
                                     <label>Increment Amount <span style="color: red">*</span></label>
                                     <div class="form-group">
                                         <input type="number" name="increment_amount" class="form-control inputtext"  required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <label>Descriptions <span style="color: red">*</span></label>
+                                    <div class="form-group">
+                                        <input type="" name="description" class="form-control inputtext"  required="">
                                     </div>
                                 </div>
                             </div>
@@ -46,19 +73,22 @@
                     <table data-page-length='100' class="table table-bordered table-striped getTable">
                         <thead>
                             <tr style="background:#3c8dbc;color:#fff;font-weight:bold;text-transform: uppercase;">
-                                <th style="text-align: center">Increment No</th>
+                                <th style="text-align: center">Increment Code</th>
                                 <th style="text-align: center">Increment Date</th>
                                 <th style="text-align: center">Increment Amount</th>
-                                <th style="text-align: center">Year Month</th>
+                                <th style="text-align: center">Employee Id</th>
+                                <th style="text-align: center">Month Day</th>
                                 <th style="text-align: center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($getincrementinfo as $value)
                             <tr>
-                                <td style="text-align: center">{{ $value->incrementid }}</td>
+                                <td style="text-align: center">{{ $value->increment_code }}</td>
                                 <td style="text-align: center">{{ $value->increment_date }}</td>
                                 <td style="text-align: center">{{ $value->increment_amount }}</td>
+                                <td style="text-align: center">{{ $value->employeeid }}</td>
+                                <td style="text-align: center">{{ $value->create_month }} {{ $value->create_date}}</td>
                                 <td style="text-align: center">
                                     <button class="btn btn-o btn-primary managedata" id="{{$value->incrementid}}" value="edit" style="text-align: center;border-radius: 10px;"><i class="fa fa-edit"></i> Edit</button>
                                     <button class="btn btn-o btn-danger managedata" id="{{$value->incrementid}}" value="delete" style="text-align: center;border-radius: 10px;"><i class="fa fa-trash-o"></i> Delete</button>
@@ -85,17 +115,47 @@
                     <form method="post" action="{{ route('incrementinfosaveupdate') }}">
                         @csrf
                         <input type="hidden" name="taskstatus" value="update">
+                        <input type="hidden" name="dataid" id="setdataid">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>Increment Code <span style="color: red">*</span></label>
+                                <div class="form-group">
+                                    <input type="" name="increment_code" id="setincrement_code" value="{{ $lastincrementcode }}" class="form-control inputtext" readonly required="">
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <label class="form-label">Employee <span style="color: red">*</span></label>
+                                <select style="width: 100%" name="employe_id" id="setemployeid" class="form-control inputnumber getSelect" required="">
+                                    <option value=""></option>
+                                    <?php
+                                    foreach ($emoployees['items'] as $values) {
+                                        ?>
+                                        <option name="employe_id" value="<?= $values['employe_id'] ?>">
+                                            {{ $values['name_english'] }} => {{ $values['designation'] }} => {{ $values['departement'] }}
+                                        </option>
+                                     <?php } ?>
+                                </select>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Increment Date <span style="color: red">*</span></label>
                                 <div class="form-group">
-                                    <input type="" name="increment_date" id="setincrement_date" class="form-control inputtext allDate"  required="">
+                                    <input type="" name="inc_date" id="setincrement_date" class="form-control inputtext allDate"  required="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <label>Increment Amount <span style="color: red">*</span></label>
                                 <div class="form-group">
                                     <input type="number" name="increment_amount" id="setincrement_amount" class="form-control inputtext"  required="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label>Descriptions <span style="color: red">*</span></label>
+                                <div class="form-group">
+                                    <input type="" name="description" id="setdescription" class="form-control inputtext"  required="">
                                 </div>
                             </div>
                         </div>
@@ -114,10 +174,13 @@
                 var id = $(this).attr('id');
                 var value = $(this).val();
                 if (value === 'edit') {
-                    $.get('<?= URL::to("editincrementinfo") ?>/' + id, function (data) {
+                    $.get('<?= URL::to("incrementinfo") ?>/' + id, function (data) {
                         $('#setdataid').val(data.incrementid);
+                        $('#setincrement_code').val(data.increment_code);
+                        $('#setemployeid').val(data.employeeid);
                         $('#setincrement_date').val(data.increment_date);
                         $('#setincrement_amount').val(data.increment_amount);
+                        $('#setdescription').val(data.description);
                         $('#updateModal').modal('show');
                     });
                 } else {

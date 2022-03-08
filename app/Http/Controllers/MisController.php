@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\HTTP;
+use DateTime;
 
 class MisController extends Controller
 {
@@ -515,10 +516,21 @@ class MisController extends Controller
 
 
         /// Increment Info
-        public function incrementinfomanage(Request $request) 
+        public function incrementinfomanage() 
         {
+            $lastincrementcode = DB::table('FA_INCREMENT')->select('increment_code')->orderBy('incrementid', 'desc')->first();
+            $resresult = explode('00', @$lastincrementcode->increment_code);
+            if (empty(@$lastincrementcode->increment_code)) {
+                $getresresult = "001";
+            } else {
+                $number_res = $resresult[1] + 1;
+                $getresresult = '00' . $number_res;
+            }
+
             $data=[
-                'getincrementinfo'=>DB::table('FA_INCREMENT')->get()
+                'emoployees'=>$this->allemployee_apidata(),
+                'getincrementinfo'=>DB::table('FA_INCREMENT')->get(),
+                'lastincrementcode'=>$getresresult,
             ];
             return view('layouts.mcsfa.incrementinfo', $data);
         }
@@ -527,9 +539,16 @@ class MisController extends Controller
         {
             $taskstatus = $request->taskstatus;
             $incrementid = $request->dataid;
+
+            $now = new DateTime();
             $data = [
-                'increment_date' => $request->increment_date,
-                'increment_amount' => $request->increment_amount
+                'increment_date' => $request->inc_date,
+                'increment_amount' => $request->increment_amount,
+                'increment_code' => $request->increment_code,
+                'employeeid' => $request->employe_id,
+                'description' => $request->description,
+                'create_month' => $now->format('M'),
+                'create_date' => $now->format('d')
             ];
 
             if($taskstatus == 'save') {
@@ -537,6 +556,13 @@ class MisController extends Controller
                 $message = 'Saved';
             }
             else {
+                $data = [
+                    'increment_date' => $request->inc_date,
+                    'increment_amount' => $request->increment_amount,
+                    'increment_code' => $request->increment_code,
+                    'employeeid' => $request->employe_id,
+                    'description' => $request->description
+                ];
                 DB::table('FA_INCREMENT')->where('incrementid', $incrementid)->update($data);
                 $message = 'Updated';
             }
