@@ -20,9 +20,9 @@
                                     <label>Project <span style="color: red">*</span></label>
                                     <div class="form-group">
                                         <select style="width: 100%" name="project" class="form-control inputnumber getSelect" required="">
-                                            @foreach($getOffice as $values)
-                                                <option name="project" value="{{ $values->office_name }}">
-                                                    {{ $values->office_name }}
+                                            @foreach($getProject as $values)
+                                                <option name="project" value="{{ $values->project_desc }}">
+                                                    {{ $values->project_desc }}
                                                 </option>
                                             @endforeach
                                         </select>

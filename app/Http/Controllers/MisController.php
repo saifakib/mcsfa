@@ -421,7 +421,7 @@ class MisController extends Controller
     public function professionalinfomanage(Request $request) 
         {
             $data=[
-                'getOffice'=>DB::table('FA_OFFICE')->get(),
+                'getProject'=>DB::table('FA_PROJECTS')->get(),
                 'getbbabanks'=>DB::table('FA_BBABANKS')->select('bank')->distinct()->orderBy('bank','asc')->get(),
                 'gethousetype'=> DB::table('FA_HOUSE_TYPE')->get(),
                 'getProfessionalInfo'=>DB::table('FA_PROFESSIONAL')->leftJoin('FA_HOUSE_TYPE', 'FA_PROFESSIONAL.h_type', '=', 'FA_HOUSE_TYPE.housetypeid')->get(),
@@ -479,7 +479,7 @@ class MisController extends Controller
 
         public function editProfessionalInfo($id) {
             $data=[
-                'getOffice'=>DB::table('FA_OFFICE')->get(),
+                'getProject'=>DB::table('FA_PROJECTS')->get(),
                 'getbbabanks'=>DB::table('FA_BBABANKS')->select('bank')->distinct()->orderBy('bank','asc')->get(),
                 'gethousetype'=> DB::table('FA_HOUSE_TYPE')->get(),
                 'getProfessionalInfo'=>DB::table('FA_PROFESSIONAL')->where('professioninfoid', $id)->first()
