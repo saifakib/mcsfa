@@ -619,6 +619,62 @@ class MisController extends Controller
             return view('layouts.mcsfa.traninginfo',$data);
         }
         
+
+
+
+    ///****************** House Rent ************************ */ 
+    public function houseRentManage() 
+    {
+        $data=[
+            'getHouseRent'=>DB::table('FA_HOUSERENT')->get(),
+         ];
+        return view('layouts.mcsfa.houseRent', $data);
+    }
+    
+    public function houseRentSaveUpdate(Request $request)
+    {
+        $taskstatus = $request->taskstatus;
+        $houserentid = $request->dataid;
+    
+        $data = [
+            'basic_scale' => $request->basic_scale,
+            'location_id' => $request->location_id,
+            'max_amount' => $request->max_amt,
+            'min_amount' => $request->min_amt,
+            'percentage' => $request->percentage,
+            'account_code' => $request->account_code,
+            'p_yn' => $request->p_yn
+        ];
+    
+        if($taskstatus == 'save') {
+            DB::table('FA_HOUSERENT')->insert($data);
+            $message = 'Saved';
+        }
+        else {
+            DB::table('FA_HOUSERENT')->where('houserentid', $houserentid)->update($data);
+            $message = 'Updated';
+        }
+        $notification = array(
+            'message' => "House Rent Info $message Succesfully",
+            'alert-type' => 'success'
+        );
+        return redirect('/houserentmanage')->with($notification);
+    }
+    
+    public function editHouseRent ($id) {
+        $result=DB::table('FA_HOUSERENT')->where('houserentid', $id)->first();
+        return response()->json($result);
+    }
+        
+    public function deleteHouseRent($id)
+    {
+        DB::table('FA_HOUSERENT')->where('houserentid', $id)->delete();
+        $notification = array(
+            'message' => "House Rent Info Deleted Succesfully",
+            'alert-type' => 'success'
+        );
+        return redirect('/houserentmanage')->with($notification);
+    }
 }
 
 

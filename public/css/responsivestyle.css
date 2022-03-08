@@ -1,0 +1,126 @@
+@media (max-width: 575.98px) {
+    #contentWrapper{
+        margin-top:98px
+    }
+    #contentHeader{
+        font-size: 18px;
+        margin-top: 10px;
+    }
+    #changeFileStatus{
+        font-size: 15px;
+        margin-left: 70px;
+    }
+    #scrollSmoothToBottom{
+        float: right;
+        border-radius:10px;
+        margin-top:-80px;
+        margin-right:30px;
+        font-size: 10px;
+    }
+    #responsiveFileText{
+        font-size: 20px;
+    }
+    .addMoreFiles{
+        border-radius: 10px;
+        float: right;
+        margin-top: -35px;
+        font-size: 10px;
+        margin-right: 10px;
+
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    #contentWrapper{
+        margin-top:98px
+    }
+    #contentHeader{
+        font-size: 18px;
+        margin-top: 10px;
+    }
+    #changeFileStatus{
+        font-size: 15px;
+        margin-left: 70px;
+    }
+    #scrollSmoothToBottom{
+        border-radius:10px;float: right;margin-top:-80px;margin-right: 30px;
+    }
+    #responsiveFileText{
+        font-size: 20px;
+    }
+    .addMoreFiles{
+        border-radius:10px;float: right;margin-top: -40px;margin-right: 20px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    #contentWrapper{
+        margin-top:48px
+    }
+    #contentHeader{
+        font-size: 18px;
+        margin-top: 10px;
+    }
+    #scrollSmoothToBottom{
+        border-radius:10px;float: right;margin-top:-60px;margin-right: 30px;
+    }
+    .addMoreFiles{
+        border-radius:10px;float: right;margin-top: -40px;margin-right: 20px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    #contentWrapper{
+        margin-top:48px
+    }
+    #scrollSmoothToBottom{
+        border-radius:10px;float: right;margin-top:-55px;margin-right: 30px;
+    }
+    .addMoreFiles{
+        border-radius:10px;float: right;margin-top: -40px;margin-right: 20px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #contentWrapper{
+        margin-top:48px
+    }
+    #changeFileStatus{
+        margin-left: 70px;
+    }
+    #scrollSmoothToBottom{
+        border-radius:10px;float: right;margin-top: -40px;margin-right: 30px; 
+    }
+    .addMoreFiles{
+        border-radius:10px;float: right;margin-top: -40px;margin-right: 20px;
+    }
+}
+
+@media (min-width: 1300px) {
+    #contentWrapper{
+        margin-top:48px
+    }
+    #changeFileStatus{
+        margin-left: 70px;
+    }
+    #scrollSmoothToBottom{
+        border-radius:10px;float: right;margin-top: -40px;margin-right: 30px; 
+    }
+    .addMoreFiles{
+        border-radius:10px;float: right;margin-top: -40px;margin-right: 20px;
+    }
+}
+@media (min-width: 1400px) {
+    #contentWrapper{
+        margin-top:48px
+    }
+    #changeFileStatus{
+        margin-left: 70px;
+    }
+    #scrollSmoothToBottom{
+        border-radius:10px;float: right;margin-top: -40px;margin-right: 30px; 
+    }
+    .addMoreFiles{
+        border-radius:10px;float: right;margin-top: -40px;margin-right: 20px;
+    }
+}

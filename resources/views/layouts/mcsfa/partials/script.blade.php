@@ -1,16 +1,16 @@
-<script src="http://192.168.3.8:8081/fa/public/js/bootstrap.min.js"></script>
-    <script src="http://192.168.3.8:8081/fa/public/js/jquery.dataTables.min.js"></script>
-    <script src="http://192.168.3.8:8081/fa/public/js/dataTables.bootstrap.min.js"></script>
-    <script src="http://192.168.3.8:8081/fa/public/js/chart.js"></script>
-    <!--<script src="http://192.168.3.8:8081/fa/public/js/dashboard2.js"></script>-->
-    <script src="http://192.168.3.8:8081/fa/public/js/jquery-ui.js"></script>
-    <!--<script src="http://192.168.3.8:8081/fa/public/js/bootstrap-datepicker.min.js"></script>-->
-    <script src="http://192.168.3.8:8081/fa/public/js/maincsript.min.js"></script>
-<!--        <script src="http://192.168.3.8:8081/fa/public/js/demo.js"></script>-->
-    <script src="http://192.168.3.8:8081/fa/public/js/scrolltop.js"></script>
-    <script src="http://192.168.3.8:8081/fa/public/js/select2.full.min.js"></script>
-    <script src="http://192.168.3.8:8081/fa/public/js/sweetalert.min.js"></script>
-    <script src="http://192.168.3.8:8081/fa/public/js/toastr.min.js"></script>
+<script src="{{asset('/')}}js/bootstrap.min.js"></script>
+    <script src="{{asset('/')}}js/jquery.dataTables.min.js"></script>
+    <script src="{{asset('/')}}js/dataTables.bootstrap.min.js"></script>
+    <script src="{{asset('/')}}js/chart.js"></script>
+    <script src="{{asset('/')}}js/dashboard2.js"></script>
+    <script src="{{asset('/')}}js/jquery-ui.js"></script>
+    <!--<script src="{{asset('/')}}js/bootstrap-datepicker.min.js"></script>-->
+    <script src="{{asset('/')}}js/maincsript.min.js"></script>
+<!--        <script src="{{asset('/')}}js/demo.js"></script>-->
+    <script src="{{asset('/')}}js/scrolltop.js"></script>
+    <script src="{{asset('/')}}js/select2.full.min.js"></script>
+    <script src="{{asset('/')}}js/sweetalert.min.js"></script>
+    <script src="{{asset('/')}}js/toastr.min.js"></script>
     <script>
     </script>
     <script>
@@ -23,6 +23,7 @@
             });
             // $('.myselect').selectpicker();
             $('.getSelect').select2();
+//            $('.allSelect').select2();
             $(".allDate").datepicker({
                 changeMonth: true,
                 changeYear: true,
@@ -35,11 +36,26 @@
         });
         $(document).ready(function () {
             $('#logout').click(function () {
-                window.location.href = "http://192.168.3.8:8081/fa/logout"
+                window.location.href = "{{URL::to('/logout')}}"
             });
         });
     </script>
-        <script>
+    @if (Session::has('message'))
+    <script>
+        var type = "{{Session::get('alert-type')}}";
+        if (type === "success") {
+            toastr.options.timeOut = 4000;
+            toastr.success("{{Session::get('message')}}");
+        } else if (type === "warning") {
+            toastr.options.timeOut = 4000;
+            toastr.warning("{{Session::get('message')}}");
+        } else {
+            toastr.options.timeOut = 4000;
+            toastr.error("{{Session::get('message')}}");
+        }
+    </script>
+    @endif
+    <script>
         function scrollSmoothToBottom() {
             var scrollingElement = (document.scrollingElement || document.body);
             $(scrollingElement).animate({

@@ -105,8 +105,6 @@ Route::get('/professionalinfo/{id}', [\App\Http\Controllers\MisController::class
 Route::get('/personalinfo', [\App\Http\Controllers\MisController::class, 'personalinfomanage']);
 
 
-
-
 // Increment Info
 Route::get('/incrementinfo', [\App\Http\Controllers\MisController::class, 'incrementinfomanage']);
 Route::post('/incrementinfo', [\App\Http\Controllers\MisController::class, 'incrementinfosaveupdate'])->name('incrementinfosaveupdate');
@@ -117,3 +115,11 @@ Route::get('/deleteincrementinfo/{id}', [\App\Http\Controllers\MisController::cl
 
 //Employee traning Info
 Route::get('/employeetraninginfo', [\App\Http\Controllers\MisController::class, 'employeetraninginfomanage']);
+
+
+
+// House Rent Manage
+Route::get('/houserentmanage', [\App\Http\Controllers\MisController::class, 'houseRentManage']);
+Route::post('/houserentmanage', [\App\Http\Controllers\MisController::class, 'houseRentSaveUpdate'])->name('houseRentSaveUpdate');
+Route::get('/houserentmanage/{id}', [\App\Http\Controllers\MisController::class, 'editHouseRent']);
+Route::get('/deletehouserent/{id}', [\App\Http\Controllers\MisController::class, 'deleteHouseRent']);
