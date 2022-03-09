@@ -135,3 +135,10 @@ Route::get('/deleteloanmanage/{id}', [\App\Http\Controllers\MisController::class
 
 // Loan Schedule
 Route::get('/loanschedule', [\App\Http\Controllers\MisController::class, 'loanSchedule']);
+
+
+
+
+// Bill Registation
+Route::get('/billregister', [\App\Http\Controllers\MisController::class, 'bilRegistater']);
+Route::post('/billregister', [\App\Http\Controllers\MisController::class, 'bilRegistaterSaveUpdate'])->name('bilRegistaterSaveUpdate');

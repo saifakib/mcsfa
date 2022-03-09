@@ -32,7 +32,7 @@
     <li id="IncrementInfo"><a href="{{ URL::to('/')}}/incrementinfo" style="font-size:12px"> <span>Increment Info</span></a></li>
     <li id="EmpTraningInfo"><a href="{{ URL::to('/')}}/employeetraninginfo" style="font-size:12px"> <span>Employee Traning Info</span></a></li>
     <li id="HouseRentInfo"><a href="{{ URL::to('/')}}/houserentmanage" style="font-size:12px"> <span>House Rent Info</span></a></li>
-
+    <li id="BillRegistation"><a href="{{ URL::to('/')}}/billregister" style="font-size:12px"> <span>Bill Registation</span></a></li>
 
 
 

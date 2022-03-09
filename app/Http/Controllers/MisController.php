@@ -759,9 +759,55 @@ class MisController extends Controller
         public function loanSchedule() 
         {
             $data=[
+                'getloans'=>DB::table('FA_LOANMANAGE')->get(),
                 'getLoanSchedule'=>[]
             ];
             return view('layouts.mcsfa.loanSchedule', $data);
+        }
+
+
+
+
+
+        /************Bill Registation ************ */
+        public function bilRegistater()
+        {
+            $data=[
+                'getBudgets'=>DB::table('FA_BUDGETTABS')->GET(),
+                'getAllBills'=>[]
+            ];
+
+            return view('layouts.mcsfa.bilRegister', $data);
+        }
+
+        public function bilRegistaterSaveUpdate(Request $request)
+        {
+            $taskstatus = $request->taskstatus;
+            $bilid = $request->dataid;
+        
+            $data = [
+                'budget_id' => $request->budget_id,
+                'amount' => $request->amount,
+                'vat' => $request->vat,
+                'tax' => $request->tax,
+                'date' => $request->date,
+                'remarks' => $request->remarks,
+                'description' => $request->description
+            ];
+        
+            if($taskstatus == 'save') {
+                DB::table('FA_HOUSERENT')->insert($data);
+                $message = 'Saved';
+            }
+            else {
+                DB::table('FA_HOUSERENT')->where('houserentid', $houserentid)->update($data);
+                $message = 'Updated';
+            }
+            $notification = array(
+                'message' => "House Rent Info $message Succesfully",
+                'alert-type' => 'success'
+            );
+            return redirect('/houserentmanage')->with($notification);
         }
 }
 
