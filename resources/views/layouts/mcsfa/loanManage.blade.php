@@ -13,21 +13,20 @@
             <div class="panel" style="border: none">
                 <div id="collapseTwo" class="panel-collapse collapse">
                     <div class="box-body" style="border: 2px solid hsl(202, 52%, 49%)">
-                        <form method="post" action="{{ route('employesuspendsaveupdate') }}">
+                        <form method="post" action="{{ route('loanManageSaveUpdate') }}">
                             @csrf
                             <input type="hidden" name="taskstatus" value="save">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <label>Loan Type <span style="color: red">*</span></label>
-                                    <select name="l_type" class="form-control inputnumber" required="">
+                                <div class="col-md-4">
+                                    <label>Loan Type<span style="color: red">*</span></label>
+                                    <select name="loan_type_id" class="form-control inputnumber" required="">
                                         <option value="" selected="" disabled="">Select Type</option>
-                                        <option value="A">A</option>
-                                        <option value="B">B</option>
-                                        <option value="B">C</option>
-                                        <option value="C">D</option>
+                                        <?php foreach($getLoanTypes as $value) { ?>
+                                            <option name="loan_type_id" value="<?= $value->lonid ?>">{{ $value->type_name }}</option>
+                                        <?php } ?>
                                     </select>
                                 </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-8">
                                     <label class="form-label">Employee <span style="color: red">*</span></label>
                                     <select style="width: 100%" name="employe_id" class="form-control inputnumber getSelect" required="">
                                         <option value=""></option>
@@ -42,73 +41,89 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="col-md-4">
-                                        <label>Loan Amount <span style="color: red">*</span></label>
-                                        <div class="form-group">
-                                            <input type="number" name="loan_amount" class="form-control inputtext"  required="">
-                                        </div>
+                                <div class="col-md-3">
+                                    <label>Loan Amount <span style="color: red">*</span></label>
+                                    <div class="form-group">
+                                        <input type="number" name="loan_amount" class="form-control inputtext"  required="">
                                     </div>
+                                </div>
+                                <div class="col-md-3">
                                     <label>Install No <span style="color: red">*</span></label>
                                     <div class="form-group">
                                         <input type="text" name="install_no" class="form-control inputnumber" required="">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>Install Amount <span style="color: red">*</span></label>
                                     <div class="form-group">
                                         <input type="number" name="install_amount" class="form-control inputtext"  required="">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
+                                    <label>Interest Amount <span style="color: red">*</span></label>
+                                    <div class="form-group">
+                                        <input type="number" name="interest_amount" class="form-control inputtext"  required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
                                     <label>Interest Rate <span style="color: red">*</span></label>
                                     <div class="form-group">
                                         <input type="number" name="interest_rate" class="form-control inputtext"  required="">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="col-md-4">
-                                        <label>Loan Period <span style="color: red">*</span></label>
-                                        <div class="form-group">
-                                            <input type="number" name="loan_period" class="form-control inputtext"  required="">
-                                        </div>
+                                <div class="col-md-3">
+                                    <label>Loan Period <span style="color: red">*</span></label>
+                                    <div class="form-group">
+                                        <input type="number" name="loan_period" class="form-control inputtext"  required="">
                                     </div>
+                                </div>
+                                <div class="col-md-3">
                                     <label>Load Taken Date<span style="color: red">*</span></label>
                                     <div class="form-group">
-                                        <input type="date" name="loan_taken_date" class="form-control inputnumber" required="">
+                                        <input type="" name="loan_taken_date" class="form-control inputnumber allDate" required="">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>Interest Install Amount <span style="color: red">*</span></label>
                                     <div class="form-group">
-                                        <input type="number" name="install_amount" class="form-control inputtext"  required="">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Interest Rate <span style="color: red">*</span></label>
-                                    <div class="form-group">
-                                        <input type="number" name="interest_rate" class="form-control inputtext"  required="">
+                                        <input type="number" name="interest_install_amount" class="form-control inputtext"  required="">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <label class="control-label col-md-3">
-                                        Active Y/N <span style="color: red">*</span>
-                                    </label>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label style="margin-right: 20px">
-                                                <input type="radio" name="a_yn" value="Y" class="big" required=""><span style="position: relative;left:10px;bottom: 10px">Yes</span>
-                                            </label>
-                                            <label>
-                                                <input type="radio" name="a_yn" value="N" class="big" required=""><span style="position: relative;left:10px;bottom: 10px">No</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                
+                                <div class="col-md-3">
+                                    <label>WF Interest Application Y/N <span style="color: red">*</span></label>
+                                    <select name="wf_interest" class="form-control inputnumber" required="">
+                                        <option value="" selected="" disabled="">Select Type</option>
+                                        <option value="Y">Yes</option>
+                                        <option value="N">No</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Loan Schedule Y/N <span style="color: red">*</span></label>
+                                    <select name="loan_schedule" class="form-control inputnumber" required="">
+                                        <option value="" selected="" disabled="">Select Type</option>
+                                        <option value="Y">Yes</option>
+                                        <option value="N">No</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Interest Schedule Y/N <span style="color: red">*</span></label>
+                                    <select name="interest_schedule" class="form-control inputnumber" required="">
+                                        <option value="" selected="" disabled="">Select Type</option>
+                                        <option value="Y">Yes</option>
+                                        <option value="N">No</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Loan Recover Y/N <span style="color: red">*</span></label>
+                                    <select name="loan_recover" class="form-control inputnumber" required="">
+                                        <option value="" selected="" disabled="">Select Type</option>
+                                        <option value="Y">Yes</option>
+                                        <option value="N">No</option>
+                                    </select>
                                 </div>
                             </div>
                             <br>
@@ -127,40 +142,36 @@
                     <table data-page-length='100' class="table table-bordered table-striped getTable">
                         <thead>
                             <tr style="background:#3c8dbc;color:#fff;font-weight:bold;text-transform: uppercase;">
-                                <th style="text-align: center">S/N</th>
-                                <th style="text-align: center">Emp ID</th>
-                                {{-- <th style="text-align: center">Name</th>
-                                <th style="text-align: center">Designation</th> --}}
-                                <th style="text-align: center">Reason</th>
-                                <th style="text-align: center">Order Date</th>
-                                <th style="text-align: center">Date From</th>
-                                <th style="text-align: center">Date To</th>
+                                <th style="text-align: center">ID</th>
+                                <th style="text-align: center">Loan Type ID</th>
+                                <th style="text-align: center">Employee Name</th>
+                                <th style="text-align: center">Loan Amount</th>
+                                <th style="text-align: center">Loan Period</th>
+                                <th style="text-align: center">Install no</th>
+                                <th style="text-align: center">Install Amount</th>>
                                 <th style="text-align: center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($getLoanManage as $value)
                             @php
-                            $i = 1
+                            $response = Http::get("http://192.168.3.8:8085/ords/hrm/employees/v_emp_all/" . $value->employe_id);
+                            $decoded = json_decode($response, true);
                             @endphp
-                            @foreach($getemployeesuspend as $value)
                             <tr>
-                                <td style="text-align: center">{{ $i }}</td>
-                                <td style="text-align: center">{{ $value->employe_id }}</td>
-                                {{-- <td style="text-align: center">{{ $value->emp_name }}</td> --}}
-                                {{-- <td style="text-align: center">{{ $value->designation }}</td> --}}
-                                <td style="text-align: center">{{ $value->reason}}</td>
-                                <td style="text-align: center">{{ $value->order_date }}</td>
-                                <td style="text-align: center">{{ $value->date_from }}</td>
-                                <td style="text-align: center">{{ $value->date_to }}</td>
+                                <td style="text-align: center">{{ $value->loanmanageid }}</td>
+                                <td style="text-align: center">{{ $value->type_name }}</td>
+                                <td style="text-align: center">{{ $decoded['name_english'] }}</td>
+                                <td style="text-align: center">{{ $value->loan_amount }}</td>
+                                <td style="text-align: center">{{ $value->loan_period }}</td>
+                                <td style="text-align: center">{{ $value->install_no }}</td>
+                                <td style="text-align: center">{{ $value->install_amount }}</td>
                                 <td style="text-align: center">
-                                    <button class="btn btn-o btn-primary managedata" id="{{$value->employeesuspendid}}" value="edit" style="text-align: center;border-radius: 10px;"><i class="fa fa-edit"></i> Edit</button>
-                                    <button class="btn btn-o btn-danger managedata" id="{{$value->employeesuspendid}}" value="delete" style="text-align: center;border-radius: 10px;"><i class="fa fa-trash-o"></i> Delete</button>
+                                    <a href="{{ URL::to('/')}}/editloanmanage/{{ $value->loanmanageid }}" class="btn btn-o btn-primary" value="edit" style="text-align: center;border-radius: 10px;" title="Edit"><i class="fa fa-edit"></i></a>
+                                    <a class="btn btn-o btn-danger managedata" id="{{$value->loanmanageid}}" value="Delete" style="text-align: center;border-radius: 10px;" title="Delete"><i class="fa fa-remove"></i></a>
                                 </td>
                             </tr>
-                            @php
-                                $i++;
-                                @endphp
-                                @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -263,7 +274,7 @@
                             $('#setdate_to').val(data.date_to);
                             $('#updateModal').modal('show');
                         });
-                    } else {
+                    } else { 
                         swal({
                             title: "Are you sure ?",
                             text: "",
@@ -275,7 +286,7 @@
                             closeOnCancel: true
                         }, function (isConfirm) {
                             if (isConfirm) {
-                                swal(window.location.href = "{{URL::to('/deleteemployesuspend')}}" + '/' + id);
+                                swal(window.location.href = "{{URL::to('/deleteloanmanage')}}" + '/' + id);
                             } else {
                                 swal("Cancelled");
                             }
@@ -286,7 +297,7 @@
         </script>
         <script>
             $(document).ready(function () {
-                $("#EmployeeSuspend").addClass('active');
+                $("#LoanManage").addClass('active');
             });
         </script>
 </div>

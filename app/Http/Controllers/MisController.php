@@ -675,6 +675,80 @@ class MisController extends Controller
         );
         return redirect('/houserentmanage')->with($notification);
     }
+
+
+
+
+
+
+
+        ///****************** Loan Management ************************ */ 
+        public function loanManage() 
+        {
+            $data=[
+                'getLoanTypes'=>DB::table('FA_LOANTYPES')->get(),
+                'getLoanManage'=>DB::table('FA_LOANMANAGE')->leftJoin('FA_LOANTYPES', 'FA_LOANMANAGE.loan_type_id', '=', 'FA_LOANTYPES.LONID')->get(),
+                'emoployees'=>$this->allemployee_apidata(),
+             ];
+            return view('layouts.mcsfa.loanManage', $data);
+        }
+        
+        public function loanManageSaveUpdate(Request $request)
+        {
+            $taskstatus = $request->taskstatus;
+            $loanmanageid = $request->dataid;
+        
+            $data = [
+                'loan_type_id' => $request->loan_type_id,
+                'employe_id' => $request->employe_id,
+                'loan_amount' => $request->loan_amount,
+                'install_no' => $request->install_no,
+                'install_amount' => $request->install_amount,
+                'interest_amount' => $request->interest_amount,
+                'interest_rate' => $request->interest_rate,
+                'loan_period' => $request->loan_period,
+                'loan_taken_date' => $request->loan_taken_date,
+                'interest_install_amount' => $request->interest_install_amount,
+                'wf_interest' => $request->wf_interest,
+                'loan_schedule' => $request->loan_schedule,
+                'interest_schedule' => $request->interest_schedule,
+                'loan_recover' => $request->loan_recover,
+
+            ];
+        
+            if($taskstatus == 'save') {
+                DB::table('FA_LOANMANAGE')->insert($data);
+                $message = 'Saved';
+            }
+            else {
+                DB::table('FA_LOANMANAGE')->where('loanmanageid', $loanmanageid)->update($data);
+                $message = 'Updated';
+            }
+            $notification = array(
+                'message' => "Loan Manage Info $message Succesfully",
+                'alert-type' => 'success'
+            );
+            return redirect('/loanmanage')->with($notification);
+        }
+        
+        public function editLoanManage ($id) {
+            $data=[
+                'getLoanTypes'=>DB::table('FA_LOANTYPES')->get(),
+                'emoployees'=>$this->allemployee_apidata(),
+                'getsingleLoanManage'=>DB::table('FA_LOANMANAGE')->where('loanmanageid', $id)->first()
+            ];
+            return view('layouts.mcsfa.updateLoanManage', $data);
+        }
+            
+        public function deleteLoanManage($id)
+        {
+            DB::table('FA_LOANMANAGE')->where('loanmanageid', $id)->delete();
+            $notification = array(
+                'message' => "Loan Manage Info Deleted Succesfully",
+                'alert-type' => 'success'
+            );
+            return redirect('/loanmanage')->with($notification);
+        }
 }
 
 

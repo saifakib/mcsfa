@@ -123,3 +123,11 @@ Route::get('/houserentmanage', [\App\Http\Controllers\MisController::class, 'hou
 Route::post('/houserentmanage', [\App\Http\Controllers\MisController::class, 'houseRentSaveUpdate'])->name('houseRentSaveUpdate');
 Route::get('/houserentmanage/{id}', [\App\Http\Controllers\MisController::class, 'editHouseRent']);
 Route::get('/deletehouserent/{id}', [\App\Http\Controllers\MisController::class, 'deleteHouseRent']);
+
+
+
+// Loan Management
+Route::get('/loanmanage', [\App\Http\Controllers\MisController::class, 'loanManage']);
+Route::post('/loanmanage', [\App\Http\Controllers\MisController::class, 'loanManageSaveUpdate'])->name('loanManageSaveUpdate');
+Route::get('/editloanmanage/{id}', [\App\Http\Controllers\MisController::class, 'editLoanManage']);
+Route::get('/deleteloanmanage/{id}', [\App\Http\Controllers\MisController::class, 'deleteLoanManage']);
