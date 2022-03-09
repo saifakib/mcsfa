@@ -32,7 +32,33 @@
     <li id="IncrementInfo"><a href="{{ URL::to('/')}}/incrementinfo" style="font-size:12px"> <span>Increment Info</span></a></li>
     <li id="EmpTraningInfo"><a href="{{ URL::to('/')}}/employeetraninginfo" style="font-size:12px"> <span>Employee Traning Info</span></a></li>
     <li id="HouseRentInfo"><a href="{{ URL::to('/')}}/houserentmanage" style="font-size:12px"> <span>House Rent Info</span></a></li>
-    <li id="LoanManage"><a href="{{ URL::to('/')}}/loanmanage" style="font-size:12px"> <span>Loan Management</span></a></li>
+
+
+
+
+
+
+
+    <li id="LoanManagePanel" class="treeview">
+        <a href="javascript:void(0)" style="">
+            <span> Loan Management</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li id="LoanManage"><a href="{{ URL::to('/')}}/loanmanage" style="font-size:12px"> <span>Loan Management</span></a></li>
+            <li id="LoanSchedule"><a href="{{ URL::to('/')}}/loanschedule" style="font-size:12px"> <span>Loan Schedule</span></a></li>
+        </ul>
+    </li> 
+
+
+
+
+
+
+
+
 
     <li id="SettingsPanel" class="treeview">
         <a href="javascript:void(0)" style="">

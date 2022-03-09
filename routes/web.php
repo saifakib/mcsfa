@@ -131,3 +131,7 @@ Route::get('/loanmanage', [\App\Http\Controllers\MisController::class, 'loanMana
 Route::post('/loanmanage', [\App\Http\Controllers\MisController::class, 'loanManageSaveUpdate'])->name('loanManageSaveUpdate');
 Route::get('/editloanmanage/{id}', [\App\Http\Controllers\MisController::class, 'editLoanManage']);
 Route::get('/deleteloanmanage/{id}', [\App\Http\Controllers\MisController::class, 'deleteLoanManage']);
+
+
+// Loan Schedule
+Route::get('/loanschedule', [\App\Http\Controllers\MisController::class, 'loanSchedule']);

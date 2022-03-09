@@ -711,6 +711,7 @@ class MisController extends Controller
                 'interest_install_amount' => $request->interest_install_amount,
                 'wf_interest' => $request->wf_interest,
                 'loan_schedule' => $request->loan_schedule,
+                'loan_reschedule' => $request->loan_reschedule,
                 'interest_schedule' => $request->interest_schedule,
                 'loan_recover' => $request->loan_recover,
 
@@ -748,6 +749,19 @@ class MisController extends Controller
                 'alert-type' => 'success'
             );
             return redirect('/loanmanage')->with($notification);
+        }
+
+
+
+
+
+        /**************** Loan Schedule **************/
+        public function loanSchedule() 
+        {
+            $data=[
+                'getLoanSchedule'=>[]
+            ];
+            return view('layouts.mcsfa.loanSchedule', $data);
         }
 }
 

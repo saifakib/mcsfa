@@ -126,6 +126,16 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>Loan Re-Schedule Y/N <span style="color: red">*</span></label>
+                                    <select name="loan_reschedule" class="form-control inputnumber" required="">
+                                        <option value="" selected="" disabled="">Select Type</option>
+                                        <option value="Y">Yes</option>
+                                        <option value="N">No</option>
+                                    </select>
+                                </div>
+                            </div>
                             <br>
                             <div style="text-align: center">
                                 <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure ?')" style="border-radius: 10px;"><i class="fa fa-save"></i> Add</button>
@@ -205,6 +215,7 @@
         </script>
         <script>
             $(document).ready(function () {
+                $("#LoanManagePanel").addClass('active');
                 $("#LoanManage").addClass('active');
             });
         </script>
