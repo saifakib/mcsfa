@@ -179,102 +179,11 @@
         </div>
     </section>
         </div>
-        <div class="modal fade" id="updateModal">
-            <div class="modal-dialog">
-                <div class="modal-content" style="border:5px solid #3C8DBC">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                        <h3 class="modal-title text-center">Update Deduction Info</h3>
-                    </div>
-                    <div class="modal-body">
-                        <form method="post" action="{{route('allowancesaveupdate')}}">
-                            {{csrf_field()}}
-                            <input type="hidden" name="dataid" id="setdataid">
-                            <div class="row">
-                                <div class="col-md-6">
-                                <label class="form-label">Employee <span style="color: red">*</span></label>
-                                <select style="width: 100%" name="employe_id" id="setemployeid" class="form-control inputnumber getSelect" required="">
-                                    <option value=""></option>
-                                    <?php
-                                    foreach ($emoployees['items'] as $values) {
-                                        ?>
-                                        <option name="employe_id" id="setemployeid" value="<?= $values['employe_id'] ?>">
-                                            {{ $values['name_english'] }} -> {{ $values['designation'] }} -> {{ $values['departement'] }}
-                                        </option>
-                                     <?php } ?>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label>Reason <span style="color: red">*</span></label>
-                                <div class="form-group">
-                                    <input type="text" name="reason" id="setreason" class="form-control inputnumber" required="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label>Order Date <span style="color: red">*</span></label>
-                                <div class="form-group">
-                                    <input type="date" name="order_date" id="order_date" class="form-control inputnumber" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <label>Date From <span style="color: red">*</span></label>
-                                <div class="form-group">
-                                    <input type="date" name="date_from" id="date_from" class="form-control inputtext"  required="">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <label>Date To <span style="color: red">*</span></label>
-                                <div class="form-group">
-                                    <input type="date" name="date_to" id="date_to" class="form-control inputtext"  required="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label class="control-label col-md-3">
-                                    Active Y/N <span style="color: red">*</span>
-                                </label>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label style="margin-right: 20px">
-                                            <input type="radio" name="a_yn" value="Y" class="big" required=""><span style="position: relative;left:10px;bottom: 10px">Yes</span>
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="a_yn" value="N" class="big" required=""><span style="position: relative;left:10px;bottom: 10px">No</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            
-                            </div>
-                        </div>
-                            <br>
-                            <div style="text-align: center">
-                                <button type="button" class="btn btn-warning" data-dismiss="modal" style="border-radius: 10px;"><i class="fa fa-times"></i> Close</button>
-                                <button type="submit" id="submeetButton" class="btn btn-primary" onclick="return confirm('Are you sure ?')" style="border-radius: 10px;"><i class="fa fa-check-circle-o"></i> Update</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
         <script>
             $(document).ready(function () {
                 $(document).on('click', '.managedata', function () {
                     var id = $(this).attr('id');
                     var value = $(this).val();
-                    if (value === 'edit') {
-                        $.get('<?= URL::to("employesuspend") ?>/' + id, function (data) {
-                            $('#setdataid').val(data.employeesuspendid);
-                            $('#setreason').val(data.reason);
-                            $('#setorder_date').val(data.order_date);
-                            $('#setdate_from').val(data.date_from);
-                            $('#setdate_to').val(data.date_to);
-                            $('#updateModal').modal('show');
-                        });
-                    } else { 
                         swal({
                             title: "Are you sure ?",
                             text: "",
@@ -291,7 +200,6 @@
                                 swal("Cancelled");
                             }
                         });
-                    }
                 });
             });
         </script>
