@@ -144,3 +144,8 @@ Route::get('/bill', [\App\Http\Controllers\MisController::class, 'budgetbill']);
 Route::get('/billentry/{id}', [\App\Http\Controllers\MisController::class, 'billEntry']);
 Route::post('/billregister', [\App\Http\Controllers\MisController::class, 'bilRegistaterSaveUpdate'])->name('bilRegistaterSaveUpdate');
 Route::get('/billmanage', [\App\Http\Controllers\MisController::class, 'billManage']);
+
+
+
+// Vat and Tax Payment
+Route::get('/vattaxpayment', [\App\Http\Controllers\MisController::class, 'vattaxpayment']);

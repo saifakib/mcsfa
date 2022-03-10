@@ -32,6 +32,7 @@
     <li id="IncrementInfo"><a href="{{ URL::to('/')}}/incrementinfo" style="font-size:12px"> <span>Increment Info</span></a></li>
     <li id="EmpTraningInfo"><a href="{{ URL::to('/')}}/employeetraninginfo" style="font-size:12px"> <span>Employee Traning Info</span></a></li>
     <li id="HouseRentInfo"><a href="{{ URL::to('/')}}/houserentmanage" style="font-size:12px"> <span>House Rent Info</span></a></li>
+    <li id="VatTaxPayment"><a href="{{ URL::to('/')}}/vattaxpayment" style="font-size:12px"> <span>Vat & Tax Payment</span></a></li>
     <li id="BudgetModule" class="treeview">
         <a href="javascript:void(0)" style="font-size:12px"> Budget
             <span class="pull-right-container">

@@ -867,6 +867,19 @@ class MisController extends Controller
         //     return redirect('/billmanage')->with($notification);
 
         }
+
+
+
+        /*********Vat and tax Payment************ */
+        public function vattaxpayment() 
+        {
+            $data = [
+                'offices'=>DB::table('FA_PROJECTS')->get(),
+                'accounts'=>DB::table('FA_CHARTACCODES')->get(),
+                'getVatTaxs'=>[]
+            ];
+            return view('layouts.mcsfa.vattaxpayment', $data);
+        }
 }
 
 
