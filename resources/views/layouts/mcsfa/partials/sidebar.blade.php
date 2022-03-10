@@ -32,7 +32,20 @@
     <li id="IncrementInfo"><a href="{{ URL::to('/')}}/incrementinfo" style="font-size:12px"> <span>Increment Info</span></a></li>
     <li id="EmpTraningInfo"><a href="{{ URL::to('/')}}/employeetraninginfo" style="font-size:12px"> <span>Employee Traning Info</span></a></li>
     <li id="HouseRentInfo"><a href="{{ URL::to('/')}}/houserentmanage" style="font-size:12px"> <span>House Rent Info</span></a></li>
-    <li id="BillRegistation"><a href="{{ URL::to('/')}}/billregister" style="font-size:12px"> <span>Bill Registation</span></a></li>
+    <li id="BudgetModule" class="treeview">
+        <a href="javascript:void(0)" style="font-size:12px"> Budget
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li id="budgetCreate"><a  href="#"><i class="fa fa-circle-o"></i> Entry</a></li>
+            <li id="budgetManage"><a  href="#"><i class="fa fa-circle-o"></i> Manage</a></li>
+            <li id="budgetBill"><a  href="{{ URL::to('/')}}/bill"><i class="fa fa-circle-o"></i> Bill</a></li>
+            <li id="BillManage"><a  href="{{ URL::to('/')}}/billmanage"><i class="fa fa-circle-o"></i> Manage Bill</a></li>
+        </ul>
+    </li>
+    {{-- <li id="BillRegistation"><a href="{{ URL::to('/')}}/billregister" style="font-size:12px"> <span>Bill Registation</span></a></li> --}}
 
 
 

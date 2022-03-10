@@ -770,44 +770,102 @@ class MisController extends Controller
 
 
         /************Bill Registation ************ */
-        public function bilRegistater()
+        public function budgetbill()
         {
             $data=[
-                'getBudgets'=>DB::table('FA_BUDGETTABS')->GET(),
-                'getAllBills'=>[]
+                'getapprovedbudgets'=>DB::table('FA_BUDGETTABS')->leftJoin('FA_PROJECTS', 'FA_BUDGETTABS.PROJECTCODE', '=', 'FA_PROJECTS.PROJECT_CODE')->where('budgettype', 'Approved')->GET(),
             ];
 
-            return view('layouts.mcsfa.bilRegister', $data);
+            return view('layouts.mcsfa.bill', $data);
+        }
+
+        public function billEntry($id)
+        {
+            $data = [
+                'budget'=>DB::table('FA_BUDGETTABS')->where('budgetid', $id)->first(),
+                'lastbudget'=>DB::table('FA_BILLBUDGET')->select('restbgamount')->where('budget_id', $id)->orderBy('bilid','desc')->first(),
+            ];
+            return view('layouts.mcsfa.billte', $data);
+        }
+
+        public function billManage()
+        {
+            $data=[
+                'getAllBills'=>DB::table('FA_BILLBUDGET')->leftJoin('FA_BUDGETTABS', 'FA_BILLBUDGET.budget_id', '=', 'FA_BUDGETTABS.budgetid')->get(),
+            ];
+            return view('layouts.mcsfa.billManage', $data);
         }
 
         public function bilRegistaterSaveUpdate(Request $request)
         {
+            date_default_timezone_set("Asia/Dhaka");
+
             $taskstatus = $request->taskstatus;
-            $bilid = $request->dataid;
-        
+            $budgetamount=$request->budgetamount;
+            $amount=$request->amount;
+            $rest_amount = $budgetamount - $amount;
+            
             $data = [
                 'budget_id' => $request->budget_id,
-                'amount' => $request->amount,
+                'budget_amount' => $budgetamount,
+                'billamount' => $amount,
+                'restbgamount' => $rest_amount,
                 'vat' => $request->vat,
                 'tax' => $request->tax,
-                'date' => $request->date,
+                'billdate' => $request->date,
                 'remarks' => $request->remarks,
-                'description' => $request->description
+                'bdescription' => $request->description,
+                'createdate' =>date('Y-m-d'),
+                'createtime' =>date('g:i A'),
+                'createmonth' =>date('F-Y'),
             ];
-        
-            if($taskstatus == 'save') {
-                DB::table('FA_HOUSERENT')->insert($data);
-                $message = 'Saved';
-            }
-            else {
-                DB::table('FA_HOUSERENT')->where('houserentid', $houserentid)->update($data);
-                $message = 'Updated';
-            }
-            $notification = array(
-                'message' => "House Rent Info $message Succesfully",
+
+            DB::table('FA_BILLBUDGET')->insert($data);
+
+        $notification = array(
+                'message' => "Bill Info Saved Succesfully",
                 'alert-type' => 'success'
             );
-            return redirect('/houserentmanage')->with($notification);
+            return redirect('/billmanage')->with($notification);
+
+        // public function bilRegistaterSaveUpdate(Request $request)
+        // {
+        //     $taskstatus = $request->taskstatus;
+        //     $bilid = $request->dataid;
+        
+        //     $data = [
+        //         'budget_id' => $request->budget_id,
+        //         'amount' => $request->amount,
+        //         'vat' => $request->vat,
+        //         'tax' => $request->tax,
+        //         'billdate' => $request->date,
+        //         'remarks' => $request->remarks,
+        //         'billdescription' => $request->description
+        //     ];
+        //     if($taskstatus == 'save') {
+        //         if($request->budget_amount > $request->amount) {
+        //             $rest_amount = $request->budget_amount - $request->amount;
+                    
+        //             DB::table('FA_BILLBUDGET')->insert($data);
+        //             $message = 'Saved';
+        //         } else {
+        //             $notification = array(
+        //                 'message' => "Your Bill Amount Cross the Budget",
+        //                 'alert-type' => 'error'
+        //             );
+        //             return redirect('/billmanage')->with($notification);
+        //         }
+        //     }
+        //     else {
+        //         DB::table('FA_BILLBUDGET')->where('bilid', $bilid)->update($data);
+        //         $message = 'Updated';
+        //     }
+        //     $notification = array(
+        //         'message' => "Bill Info $message Succesfully",
+        //         'alert-type' => 'success'
+        //     );
+        //     return redirect('/billmanage')->with($notification);
+
         }
 }
 

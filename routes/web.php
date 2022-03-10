@@ -140,5 +140,7 @@ Route::get('/loanschedule', [\App\Http\Controllers\MisController::class, 'loanSc
 
 
 // Bill Registation
-Route::get('/billregister', [\App\Http\Controllers\MisController::class, 'bilRegistater']);
+Route::get('/bill', [\App\Http\Controllers\MisController::class, 'budgetbill']);
+Route::get('/billentry/{id}', [\App\Http\Controllers\MisController::class, 'billEntry']);
 Route::post('/billregister', [\App\Http\Controllers\MisController::class, 'bilRegistaterSaveUpdate'])->name('bilRegistaterSaveUpdate');
+Route::get('/billmanage', [\App\Http\Controllers\MisController::class, 'billManage']);
