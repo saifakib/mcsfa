@@ -17,7 +17,7 @@
                         <center>
                             <h3 style="font-family: Montserrat;font-weight: bold">Bangladesh Bridge Authority</h3>
                             <h5 style="font-family: Montserrat;font-weight: bold">Setu Bhaban, Banani, Dhaka</h5><br>
-                            <h4 style="font-family: Montserrat;font-weight: bold">HR Personal Information</h4>
+                            <h4 style="font-family: Montserrat;font-weight: bold">HR Professional Information</h4>
                         </center>
                         <br>
                         <table class="table table-bordered" style="margin-left: 100px">

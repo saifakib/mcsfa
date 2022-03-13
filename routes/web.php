@@ -147,5 +147,12 @@ Route::get('/billmanage', [\App\Http\Controllers\MisController::class, 'billMana
 
 
 
+// Service Information
+Route::get('/serviceinfo', [\App\Http\Controllers\MisController::class, 'serviceinfomanage']);
+Route::post('/serviceinfo', [\App\Http\Controllers\MisController::class, 'serviceinfomanageSaveUpdate'])->name('serviceinfomanageSaveUpdate');
+Route::get('/deleteserviceinfo/{id}', [\App\Http\Controllers\MisController::class, 'deleteServiceinfo']);
+
+
+
 // Vat and Tax Payment
 Route::get('/vattaxpayment', [\App\Http\Controllers\MisController::class, 'vattaxpayment']);

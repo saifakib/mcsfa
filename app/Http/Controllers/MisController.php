@@ -428,6 +428,11 @@ class MisController extends Controller
       }
 
 
+
+
+
+    /********************** Professional Info Controller ************************ */
+
     public function professionalinfomanage(Request $request) 
         {
             $data=[
@@ -874,6 +879,67 @@ class MisController extends Controller
         //     return redirect('/billmanage')->with($notification);
 
         }
+
+
+
+
+        /*********** Service Information ************/
+        
+        public function serviceinfomanage() {
+
+            $lastser_code = DB::table('FA_SERVICEINFO')->select('ser_code')->orderBy('ser_no', 'desc')->first();
+            $resresult = explode('S00', @$lastser_code->ser_no);
+            if (empty(@$lastser_code->ser_no)) {
+                $getresresult = "S001";
+            } else {
+                $number_res = $resresult[1] + 1;
+                $getresresult = 'S00' . $number_res;
+            }
+
+            $data = [
+                'services'=>DB::table('FA_SERVICEINFO')->get(),
+                'lastser_code'=>$getresresult,
+            ];
+            return view('layouts.mcsfa.serviceinfo', $data);
+        }
+
+        public function serviceinfomanageSaveUpdate(Request $request)
+        {
+            $taskstatus = $request->taskstatus;
+            $ser_no = $request->dataid;
+
+            $data = [
+                'ser_code' => $request->ser_code,
+                'ser_name' => $request->ser_name,
+                'ser_per' => $request->ser_per,
+                'entry_date' => $request->entry_date,
+                'challan_code' => $request->challan_code,
+            ];
+            if($taskstatus == 'save') {
+                DB::table('FA_SERVICEINFO')->insert($data);
+                $message = 'Saved';
+            }
+            else {
+                DB::table('FA_SERVICEINFO')->where('ser_no', $ser_no)->update($data);
+                $message = 'Updated';
+            }
+            $notification = array(
+                'message' => "Service Info $message Succesfully",
+                'alert-type' => 'success'
+            );
+            return redirect('/serviceinfo')->with($notification);
+            
+        }
+        public function deleteServiceinfo($id)
+        {
+            DB::table('FA_SERVICEINFO')->where('ser_no', $id)->delete();
+            $notification = array(
+                'message' => "Service Info Deleted Succesfully",
+                'alert-type' => 'success'
+            );
+            return redirect('/serviceinfo')->with($notification);
+        }
+
 
 
 

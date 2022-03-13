@@ -63,9 +63,12 @@
         <ul class="treeview-menu">
             <li id="LoanManage"><a href="{{ URL::to('/')}}/loanmanage" style="font-size:12px"> <span>Loan Management</span></a></li>
             <li id="LoanSchedule"><a href="{{ URL::to('/')}}/loanschedule" style="font-size:12px"> <span>Loan Schedule</span></a></li>
+            <li id="LoanRecovery"><a href="{{ URL::to('/')}}/loanrecovery" style="font-size:12px"> <span>Loan Recovery & Posting</span></a></li>
+            <li id="LoanReshedule"><a href="" style="font-size:12px"> <span>Loan Reshedule</span></a></li>
         </ul>
     </li> 
 
+    <li id="CPFandGPECollection"><a href="{" style="font-size:12px"> <span>CPF & GPE Collection</span></a></li>
 
 
 
@@ -99,6 +102,8 @@
            
         </ul>
     </li> 
+
+    <li id="ServiceInfo"><a href="{{ URL::to('/')}}/serviceinfo" style="font-size:12px"> <span>Service Info</span></a></li>
 </ul>
         </section>
         </aside>
