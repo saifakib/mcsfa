@@ -12,7 +12,7 @@
                 <form method="post" action="{{ route('professionsaveupdate') }}">
                     @csrf
                     <input type="hidden" name="taskstatus" value="update">
-                    <input type="hidden" name="dataid" value="{{ $getProfessionalInfo->professioninfoid }}">
+                    <input type="hidden" name="dataid" value="{{ $getProfessionalInfo->professid }}">
                     <div class="row">
                         <div class="col-md-3">
                             <label>Project <span style="color: red">*</span></label>

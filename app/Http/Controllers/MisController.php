@@ -452,7 +452,7 @@ class MisController extends Controller
         public function professionsaveupdate(Request $request)
         {
             $taskstatus = $request->taskstatus;
-            $professioninfoid = $request->dataid;
+            $professid = $request->dataid;
             $data = [
                 'pproject' => $request->project,
                 'pscale' => $request->scale,
@@ -477,7 +477,7 @@ class MisController extends Controller
                 $message = 'Saved';
             }
             else {
-                DB::table('FA_PROFESSIONAL')->where('professioninfoid', $professioninfoid)->update($data);
+                DB::table('FA_PROFESSIONAL')->where('professid', $professid)->update($data);
                 $message = 'Updated';
             }
             $notification = array(
@@ -492,14 +492,14 @@ class MisController extends Controller
                 'getProject'=>DB::table('FA_PROJECTS')->get(),
                 'getbbabanks'=>DB::table('FA_BBABANKS')->select('bank')->distinct()->orderBy('bank','asc')->get(),
                 'gethousetype'=> DB::table('FA_HOUSE_TYPE')->get(),
-                'getProfessionalInfo'=>DB::table('FA_PROFESSIONAL')->where('professioninfoid', $id)->first()
+                'getProfessionalInfo'=>DB::table('FA_PROFESSIONAL')->where('professid', $id)->first()
             ];
             
             return view('layouts.mcsfa.updateProfessionalInfo', $data);
         }
 
         public function deleteProfessionalInfo($id){
-            DB::table('FA_PROFESSIONAL')->where('professioninfoid', $id)->delete();
+            DB::table('FA_PROFESSIONAL')->where('professid', $id)->delete();
             $notification = array(
              'message' => "Professional Info Deleted Succesfully",
              'alert-type' => 'success'
@@ -509,11 +509,8 @@ class MisController extends Controller
 
          public function getSingleProfessionalInfo($id) {
              $data = [
-                'getProfessionalInfo'=>DB::table('FA_PROFESSIONAL')->leftJoin('FA_HOUSE_TYPE', 'FA_PROFESSIONAL.h_type', '=', 'FA_HOUSE_TYPE.housetypeid')->where('professioninfoid', $id)->first()
+                'getProfessionalInfo'=>DB::table('FA_PROFESSIONAL')->leftJoin('FA_HOUSE_TYPE', 'FA_PROFESSIONAL.h_type', '=', 'FA_HOUSE_TYPE.housetypeid')->where('professid', $id)->first()
              ];
-            //  echo '<pre>';
-            //     print_r($data);
-            //     exit();
              return view('layouts.mcsfa.viewProfessionalInfo', $data);
          }
 

@@ -194,9 +194,9 @@
                                 <td style="text-align: center">{{ $value->tin_no }}</td>
 
                                 <td style="text-align: center">
-                                    <a href="{{ URL::to('/')}}/professionalinfo/{{ $value->professioninfoid }}" class="btn btn-o btn-info" value="view" style="text-align: center;border-radius: 10px;" title="View"><i class="fa fa-eye"></i></a>
-                                    <a href="{{ URL::to('/')}}/editprofessionalinfo/{{ $value->professioninfoid }}" class="btn btn-o btn-primary" value="edit" style="text-align: center;border-radius: 10px;" title="Edit"><i class="fa fa-edit"></i></a>
-                                    <a class="btn btn-o btn-danger managedata" id="{{$value->professioninfoid}}" value="Delete" style="text-align: center;border-radius: 10px;" title="Delete"><i class="fa fa-remove"></i></a>
+                                    <a href="{{ URL::to('/')}}/professionalinfo/{{ $value->professid }}" class="btn btn-o btn-info" value="view" style="text-align: center;border-radius: 10px;" title="View"><i class="fa fa-eye"></i></a>
+                                    <a href="{{ URL::to('/')}}/editprofessionalinfo/{{ $value->professid }}" class="btn btn-o btn-primary" value="edit" style="text-align: center;border-radius: 10px;" title="Edit"><i class="fa fa-edit"></i></a>
+                                    <a class="btn btn-o btn-danger managedata" id="{{$value->professid}}" value="Delete" style="text-align: center;border-radius: 10px;" title="Delete"><i class="fa fa-remove"></i></a>
                                 </td>
                             </tr>
                             @endforeach

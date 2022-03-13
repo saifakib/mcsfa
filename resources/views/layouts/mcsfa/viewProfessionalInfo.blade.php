@@ -2,114 +2,87 @@
 @section('content')
 
 <div id="contentWrapper" style="font-family: Montserrat">
+    <!-- Content Header (Page header) -->
     <div class="content-wrapper">
-        <section class="content-header">
-            <center><h3>Professional Info Details</h3></center>
-            <button class="btn btn-primary btn-o" onclick="printDi('printarea')" style="float: right;margin-top:-50px;border-radius: 10px;margin-left: 10px"><i class="fa fa-print" aria-hidden="true"></i> Print</button>
-        </section>
-    <section class="content animated fadeInRight">
-        <div class="box" style="border: 2px solid #3c8dbc">
-            <div class="box-body">
-                <div id="printarea">
-                    <div class="row">
+    <section class="content-header">
+        <h1>Professional Information</h1>
+    </section>
+    <div class="content animated fadeInRight"><br><br>
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn" onclick="window.history.back()" style="border-radius:10px;float: left;margin-top:-10px;margin-left: 10px;background:#000;color: #fff"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>
+                <button class="btn btn-primary" onclick="printDi('printarea')" style="border-radius:10px;float: right;margin-top:-10px;margin-left: 20px;margin-right: 10px;"><i class="fa fa-print" aria-hidden="true"></i> Print</button>
+                <div class="panel" style="margin-top:-20px;">
+                    <div class="panel-content" style="border: 2px solid #3C8DBC;font-family: Montserrat" id="printarea">
+                        <center>
+                            <h3 style="font-family: Montserrat;font-weight: bold">Bangladesh Bridge Authority</h3>
+                            <h5 style="font-family: Montserrat;font-weight: bold">Setu Bhaban, Banani, Dhaka</h5><br>
+                            <h4 style="font-family: Montserrat;font-weight: bold">HR Personal Information</h4>
+                        </center>
                         <br>
-                        <div class="col-md-12">
-                            <table class="table table-bordered table-striped" style="font-size:15px;">
-                                <thead>
-                                    <tr style="background:#3c8dbc;color:#fff;;text-transform: capitalize">
-                                        <th style="text-align: center" colspan="9">Reports</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td><span style="font-weight: bold">PROJECT</span></td>
-                                        <td style="">{{ $getProfessionalInfo->pproject }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td><span style="font-weight: bold">BANK NAME</span></td>
-                                        <td style="">{{ $getProfessionalInfo->bank_name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td><span style="font-weight: bold">SCALE</span></td>
-                                        <td style="">{{ $getProfessionalInfo->pscale }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td><span style="font-weight: bold">EMPLOYEE TYPE</span></td>
-                                        <td style="">{{ $getProfessionalInfo->emp_type }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td><span style="font-weight: bold">EMPLOYEE BANK ACC</span></td>
-                                        <td style="">{{ $getProfessionalInfo->emp_bnk_acc_no }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td><span style="font-weight: bold">HOUSE TYPE</span></td>
-                                        <td style="">{{ $getProfessionalInfo->h_type }}</td>
-                                    </tr>
-                                    <br>
-                                    <tr>
-                                        <td style="text-align: center" colspan="3" rowspan="1"><span style="font-weight: bold">OTHERS INFORMATION </span></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3">
-                                            <table class="table table-bordered table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="text-align: center">PRESENT BASIC</th>
-                                                        <th style="text-align: center">PRIVIOUS BASIC</th>
-                                                        <th style="text-align: center">AMOUNT</th>
-                                                        <th style="text-align: center">TIN NO</th>
-                                                        <th style="text-align: center">INCREMENT DATE</th>
-                                                        <th style="text-align: center">INCREMENT RATE</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td style="text-align: center">{{ $getProfessionalInfo->present_basic }}</td>
-                                                        <td  style="text-align: center">{{ $getProfessionalInfo->privious_basic }}</td>
-                                                        <td style="text-align: center">{{ $getProfessionalInfo->amount }}</td>
-                                                        <td style="text-align: center"> {{ $getProfessionalInfo->tin_no }}</td>
-                                                        <td style="text-align: center">{{ $getProfessionalInfo->inc_date }}</td>
-                                                        <td style="text-align: center">{{ $getProfessionalInfo->inc_rate }}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3">
-                                            <table class="table table-bordered table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="text-align: center">QUATER</th>
-                                                        <th style="text-align: center">STAFF BUS USE</th>
-                                                        <th style="text-align: center">CAR USE</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td style="text-align: center"><?php if($getProfessionalInfo->quater == 'Y') echo 'YES'; else echo 'No' ?></td>
-                                                        <td  style="text-align: center"><?php if($getProfessionalInfo->staff_bus_use == 'Y') echo 'YES'; else echo 'No' ?></td>
-                                                        <td style="text-align: center"><?php if($getProfessionalInfo->car_use == 'Y') echo 'YES'; else echo 'No' ?></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <table class="table table-bordered" style="margin-left: 100px">
+                            <tr>
+                                <td><span style="margin-left: 100px;"><b>Project</b> :</span></td>
+                                <td><span style="margin-left: 50px;">{{ $getProfessionalInfo->pproject }} </span></td>
+                            </tr>
+                            <tr>
+                                <td><span style="margin-left: 100px;"><b>Bank Name</b> :</span></td>
+                                <td><span style="margin-left: 50px;">{{ $getProfessionalInfo->bank_name }} </span></td>
+                            </tr>
+                            <tr>
+                                <td><span style="margin-left: 100px;"><b>Scale</b> :</span></td>
+                                <td><span style="margin-left: 50px;">{{ $getProfessionalInfo->pscale }} </span></td>
+                            </tr>
+                            <tr>
+                                <td><span style="margin-left: 100px;"><b>Employee Type</b> :</span></td>
+                                <td><span style="margin-left: 50px;">{{ $getProfessionalInfo->emp_type }} </span></td>
+                            </tr>
+                            <tr>
+                                <td><span style="margin-left: 100px;"><b>Employee Bank Acc</b> :</span></td>
+                                <td><span style="margin-left: 50px;">{{ $getProfessionalInfo->emp_bnk_acc_no }} </span></td>
+                            </tr>
+                            <tr>
+                                <td><span style="margin-left: 100px;"><b>House Type</b> :</span></td>
+                                <td><span style="margin-left: 50px;">{{ $getProfessionalInfo->h_type }} </span></td>
+                            </tr>
+                            <tr>
+                                <td><span style="margin-left: 100px;"><b>Present Basic</b> :</span></td>
+                                <td><span style="margin-left: 50px;">{{ $getProfessionalInfo->present_basic }} </span></td>
+                            </tr>
+                            <tr>
+                                <td><span style="margin-left: 100px;"><b>Privious Basic</b> :</span></td>
+                                <td><span style="margin-left: 50px;">{{ $getProfessionalInfo->privious_basic }} </span></td>
+                            </tr>
+                            <tr>
+                                <td><span style="margin-left: 100px;"><b>Amount</b> :</span></td>
+                                <td><span style="margin-left: 50px;">{{ $getProfessionalInfo->amount }} </span></td>
+                            </tr>
+                            <tr>
+                                <td><span style="margin-left: 100px;"><b>Increment Data</b> :</span></td>
+                                <td><span style="margin-left: 50px;">{{ $getProfessionalInfo->inc_date }} </span></td>
+                            </tr>
+                            <tr>
+                                <td><span style="margin-left: 100px;"><b>Increment Rate</b> :</span></td>
+                                <td><span style="margin-left: 50px;">{{ $getProfessionalInfo->inc_rate }} </span></td>
+                            </tr>
+                            <tr>
+                                <td><span style="margin-left: 100px;"><b>Quater</b> :</span></td>
+                                <td><span style="margin-left: 50px;"><?php if($getProfessionalInfo->quater == 'Y') echo 'YES'; else echo 'No' ?> </span></td>
+                            </tr>
+                            <tr>
+                                <td><span style="margin-left: 100px;"><b>Staff Bus Use</b> :</span></td>
+                                <td><span style="margin-left: 50px;"><?php if($getProfessionalInfo->staff_bus_use == 'Y') echo 'YES'; else echo 'No' ?> </span></td>
+                            </tr>
+                            <tr>
+                                <td><span style="margin-left: 100px;"><b>Car Use</b> :</span></td>
+                                <td><span style="margin-left: 50px;"><?php if($getProfessionalInfo->car_use == 'Y') echo 'YES'; else echo 'No' ?> </span></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
+    </div>
     </div>
     <script type="text/javascript">
         function printDi(printarea) {
@@ -122,7 +95,7 @@
     </script>
     <script>
         $(document).ready(function () {
-            $("#ProfessionalInfo").addClass('active');
+            $("#PersonalInfo").addClass('active');
         });
     </script>
 </div>
