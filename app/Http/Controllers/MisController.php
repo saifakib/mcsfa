@@ -410,11 +410,21 @@ class MisController extends Controller
 
 
 
-      /**********************  Info Controller ************************ */
+      /********************** Personal Info Controller ************************ */
       
-      public function personalinfomanage(Request $request) 
+      public function profile_apidata($param) {
+        $response = Http::get("http://192.168.3.8:8085/ords/hrm/employees/v_emp_all/" . $param);
+        $decoded = json_decode($response, true);
+        return $decoded;
+    }
+
+      public function personalinfomanage($id) 
       {
-          return view('layouts.mcsfa.personalinfo');
+          $data = [
+            'employee'=>$this->profile_apidata($id),
+          ];
+
+          return view('layouts.mcsfa.personalinfo',$data);
       }
 
 

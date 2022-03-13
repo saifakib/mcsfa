@@ -102,7 +102,7 @@ Route::get('/professionalinfo/{id}', [\App\Http\Controllers\MisController::class
 
 
 // Personal Info
-Route::get('/personalinfo', [\App\Http\Controllers\MisController::class, 'personalinfomanage']);
+Route::get('/personalinfo/{id}', [\App\Http\Controllers\MisController::class, 'personalinfomanage']);
 
 
 // Increment Info

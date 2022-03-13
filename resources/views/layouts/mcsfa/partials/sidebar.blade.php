@@ -28,7 +28,7 @@
     <li id="Deduction"><a href="{{ URL::to('/')}}/deduction" style="font-size:12px"> <span>Deduction</span></a></li>
     <li id="EmployeeSuspend"><a href="{{ URL::to('/')}}/employesuspend" style="font-size:12px"> <span>Employee Suspend Info</span></a></li>
     <li id="ProfessionalInfo"><a href="{{ URL::to('/')}}/professionalinfo" style="font-size:12px"> <span>Professional Info</span></a></li>
-    <li id="PersonalInfo"><a href="{{ URL::to('/')}}/personalinfo" style="font-size:12px"> <span>Personal Info</span></a></li>
+    <li id="PersonalInfo"><a href="{{ URL::to('/')}}/personalinfo/807" style="font-size:12px"> <span>Personal Info</span></a></li>
     <li id="IncrementInfo"><a href="{{ URL::to('/')}}/incrementinfo" style="font-size:12px"> <span>Increment Info</span></a></li>
     <li id="EmpTraningInfo"><a href="{{ URL::to('/')}}/employeetraninginfo" style="font-size:12px"> <span>Employee Traning Info</span></a></li>
     <li id="HouseRentInfo"><a href="{{ URL::to('/')}}/houserentmanage" style="font-size:12px"> <span>House Rent Info</span></a></li>
