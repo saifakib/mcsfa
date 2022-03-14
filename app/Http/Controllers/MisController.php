@@ -930,6 +930,12 @@ class MisController extends Controller
             return redirect('/serviceinfo')->with($notification);
             
         }
+
+        public function editServiceInfo ($id) {
+            $result = DB::table('FA_SERVICEINFO')->where('ser_no', $id)->first();
+            return response()->json($result);
+        }
+
         public function deleteServiceinfo($id)
         {
             DB::table('FA_SERVICEINFO')->where('ser_no', $id)->delete();

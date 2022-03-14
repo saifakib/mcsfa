@@ -150,6 +150,7 @@ Route::get('/billmanage', [\App\Http\Controllers\MisController::class, 'billMana
 // Service Information
 Route::get('/serviceinfo', [\App\Http\Controllers\MisController::class, 'serviceinfomanage']);
 Route::post('/serviceinfo', [\App\Http\Controllers\MisController::class, 'serviceinfomanageSaveUpdate'])->name('serviceinfomanageSaveUpdate');
+Route::get('/serviceinfo/{id}', [\App\Http\Controllers\MisController::class, 'editServiceInfo']);
 Route::get('/deleteserviceinfo/{id}', [\App\Http\Controllers\MisController::class, 'deleteServiceinfo']);
 
 

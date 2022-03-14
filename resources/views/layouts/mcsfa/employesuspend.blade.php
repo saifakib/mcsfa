@@ -143,7 +143,7 @@
                     <div class="modal-body">
                         <form method="post" action="{{route('employesuspendsaveupdate')}}">
                             {{csrf_field()}}
-                            <input type="hidden" name="taskstatus" value="save">
+                            <input type="hidden" name="taskstatus" value="update">
                             <input type="hidden" name="dataid" id="setdataid">
                             <div class="row">
                                 <div class="col-md-6">
