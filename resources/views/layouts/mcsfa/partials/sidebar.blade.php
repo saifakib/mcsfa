@@ -5,7 +5,7 @@
     <li id="Dashboard"><a href="/dashboard" style="font-size:12px"> <span>Dashboard</span></a></li>
 
     
-    <li id="SettingsPanel" class="treeview">
+    {{-- <li id="SettingsPanel" class="treeview">
         <a href="javascript:void(0)" style="">
             <span><i class="fa fa-gears"></i> Settings</span>
             <span class="pull-right-container">
@@ -48,7 +48,7 @@
         </ul>
     </li>
     {{-- <li id="BillRegistation"><a href="{{ URL::to('/')}}/billregister" style="font-size:12px"> <span>Bill Registation</span></a></li> --}}
-
+{{-- 
     <li id="LoanManagePanel" class="treeview">
         <a href="javascript:void(0)" style="">
             <span> Loan Management</span>
@@ -93,7 +93,7 @@
     </li> 
 
     <li id="ServiceInfo"><a href="{{ URL::to('/')}}/serviceinfo" style="font-size:12px"> <span>Service Info</span></a></li>
-    
+      --}}
     <li id="OpeningBalance" class="treeview">
         <a style="font-size:12px" href="javascript:void(0)"> Opening Balance
             <span class="pull-right-container">
@@ -113,8 +113,8 @@
             </span>
         </a>
         <ul class="treeview-menu">
-            <li id="subopeningbalanceCreate"><a style="font-size:12px" href="http://192.168.3.231/fa/subopeningbalance/create">Create</a></li>
-            <li id="subopeningbalanceManage"><a style="font-size:12px" href="http://192.168.3.231/fa/subopeningbalance/manage">Manage</a></li>
+            <li id="subopeningbalanceCreate"><a style="font-size:12px" href="{{ URL::to('/')}}/subopeningbanalace_create">Create</a></li>
+            <li id="subopeningbalanceManage"><a style="font-size:12px" href="{{ URL::to('/')}}/subopeningbalance">Manage</a></li>
             <!--<li id="subopeningbalanceReport"><a style="font-size:12px" href="#">Report</a></li>-->
         </ul>
     </li>

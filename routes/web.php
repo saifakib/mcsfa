@@ -176,8 +176,20 @@ Route::get('/vattaxpayment', [\App\Http\Controllers\MisController::class, 'vatta
 
 
 /********************** Central Provident Fund  *********************************/
+
+// Opening Balance 
 Route::get('/openingbanalace_create', [\App\Http\Controllers\CPFController::class, 'openingBlnCre']);
 Route::get('/openingbalance', [\App\Http\Controllers\CPFController::class, 'openingBalance']);
 Route::post('/openingbanalace', [\App\Http\Controllers\CPFController::class, 'openingbanalaceSaveUpdate'])->name('openingbanalaceSaveUpdate');
 Route::get('/editopeningbalance/{id}', [\App\Http\Controllers\CPFController::class, 'editServiceInfo']);
 Route::get('/deleteopeningbalance/{id}', [\App\Http\Controllers\CPFController::class, 'deleteOpeningBalance']);
+
+
+
+// Sub Opening Balance
+Route::get('/subopeningbanalace_create', [\App\Http\Controllers\CPFController::class, 'subOpeningBlnCre']);
+Route::get('/getemporsupplier', [\App\Http\Controllers\CPFController::class, 'getemporsupplier']);
+Route::get('/subopeningbalance', [\App\Http\Controllers\CPFController::class, 'subopeningBalance']);
+Route::post('/subopeningbanalace', [\App\Http\Controllers\CPFController::class, 'subopeningbanalaceSaveUpdate'])->name('subopeningbanalaceSaveUpdate');
+// Route::get('/editopeningbalance/{id}', [\App\Http\Controllers\CPFController::class, 'editServiceInfo']);
+Route::get('/deletesubopeningbalance/{id}', [\App\Http\Controllers\CPFController::class, 'deleteSubOpeningBalance']);

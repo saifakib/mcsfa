@@ -88,4 +88,93 @@ class CPFController extends Controller
         );
         return redirect('/openingbalance')->with($notification);
     }
+
+
+
+
+
+
+
+        /********** Opening Banalce ***********/ 
+        public function subOpeningBlnCre() {
+            $data=[
+                'getProjects'=>DB::table('FA_PROJECTS')->get(),
+                'emoployees'=>$this->allemployee_apidata(),
+                'accounts'=>$this->allaccounts_apidata(),
+            ];
+            return view('layouts.mcsfa.createSubOpeningBalance', $data);
+        }
+
+        public function getemporsupplier(Request $request) {
+            $value = $request->get('value');
+   
+            if($value == 'employee') {
+                $employees = $this->allemployee_apidata();
+                echo'<option value = "">Select Employee</option>';
+                foreach ($employees['items'] as $values) {
+                    echo'<option name="emporsup_id" value = "' . $values['employe_id'] . '">' . $values['employe_registration_number'] . $values['name_english'] . $values['designation'] .'</option>';
+                }
+            } else {
+                $supliers = DB::table('FA_SUPLIERTYPELIST')->get();
+                echo'<option value = "">Select Supplier</option>';
+                foreach ($supliers as $value) {
+                    echo'<option name="emporsup_id" value = "' . $value->suptypeid . '">' . $value->suplier_code .' => '. $value->supp_name .'</option>';
+                }
+            }
+        }
+        public function subopeningBalance()
+        {
+            $data = [
+                'getsubopnbalances'=>DB::table('FA_CPFSUBOPNBAL')->leftJoin('FA_PROJECTS', 'FA_CPFSUBOPNBAL.project_id', '=', 'FA_PROJECTS.project_id')->get(),
+            ];
+            return view('layouts.mcsfa.subOpeningBalance', $data);
+        }
+    
+        public function subopeningbanalaceSaveUpdate(Request $request)
+        {
+            $taskstatus = $request->taskstatus;
+            $subopnblnid = $request->dataid;
+    
+            $data = [
+                'project_id' => $request->project_id,
+                'emporsup_id' => $request->emporsup_id,
+                'acc_for' => $request->acc_for,
+                'acc_code' => $request->acc_code,
+                'bal_type' => $request->bal_type,
+                'bal' => $request->bal,
+            ];
+    
+            if($taskstatus == 'save') {
+                DB::table('FA_CPFSUBOPNBAL')->insert($data);
+                $message = 'Saved';
+            }
+            else {
+                DB::table('FA_CPFSUBOPNBAL')->where('subopnblnid', $subopnblnid)->update($data);
+                $message = 'Updated';
+            }
+            $notification = array(
+                'message' => "Sub Opening Balance Info $message Succesfully",
+                'alert-type' => 'success'
+            );
+            return redirect('/subopeningbalance')->with($notification);
+        }
+    
+        // public function editServiceInfo($id){
+        //     $data=[
+        //         'getProjects'=>DB::table('FA_PROJECTS')->get(),
+        //         'emoployees'=>$this->allemployee_apidata(),
+        //         'accounts'=>$this->allaccounts_apidata(),
+        //         'getopnbal'=>DB::table('FA_CPFOPNBAL')->where('opnblnid', $id)->first(),
+        //     ];
+        //     return view('layouts.mcsfa.updateOpeningBalance', $data);
+        // }
+    
+        public function deleteSubOpeningBalance($id){
+           DB::table('FA_CPFSUBOPNBAL')->where('subopnblnid', $id)->delete();
+           $notification = array(
+            'message' => "Sub Opening Balance Info Deleted Succesfully",
+            'alert-type' => 'success'
+            );
+            return redirect('/subopeningbalance')->with($notification);
+        }
 }
