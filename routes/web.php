@@ -157,3 +157,27 @@ Route::get('/deleteserviceinfo/{id}', [\App\Http\Controllers\MisController::clas
 
 // Vat and Tax Payment
 Route::get('/vattaxpayment', [\App\Http\Controllers\MisController::class, 'vattaxpayment']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/********************** Central Provident Fund  *********************************/
+Route::get('/openingbanalace_create', [\App\Http\Controllers\CPFController::class, 'openingBlnCre']);
+Route::get('/openingbalance', [\App\Http\Controllers\CPFController::class, 'openingBalance']);
+Route::post('/openingbanalace', [\App\Http\Controllers\CPFController::class, 'openingbanalaceSaveUpdate'])->name('openingbanalaceSaveUpdate');
+Route::get('/editopeningbalance/{id}', [\App\Http\Controllers\CPFController::class, 'editServiceInfo']);
+Route::get('/deleteopeningbalance/{id}', [\App\Http\Controllers\CPFController::class, 'deleteOpeningBalance']);
