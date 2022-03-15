@@ -133,7 +133,7 @@ class CPFController extends Controller
         public function subopeningbanalaceSaveUpdate(Request $request)
         {
             $taskstatus = $request->taskstatus;
-            $subopnblnid = $request->dataid;
+            $subopnbalid = $request->dataid;
     
             $data = [
                 'project_id' => $request->project_id,
@@ -149,7 +149,7 @@ class CPFController extends Controller
                 $message = 'Saved';
             }
             else {
-                DB::table('FA_CPFSUBOPNBAL')->where('subopnblnid', $subopnblnid)->update($data);
+                DB::table('FA_CPFSUBOPNBAL')->where('subopnbalid', $subopnbalid)->update($data);
                 $message = 'Updated';
             }
             $notification = array(
@@ -159,15 +159,15 @@ class CPFController extends Controller
             return redirect('/subopeningbalance')->with($notification);
         }
     
-        // public function editServiceInfo($id){
-        //     $data=[
-        //         'getProjects'=>DB::table('FA_PROJECTS')->get(),
-        //         'emoployees'=>$this->allemployee_apidata(),
-        //         'accounts'=>$this->allaccounts_apidata(),
-        //         'getopnbal'=>DB::table('FA_CPFOPNBAL')->where('opnblnid', $id)->first(),
-        //     ];
-        //     return view('layouts.mcsfa.updateOpeningBalance', $data);
-        // }
+        public function editSubServiceInfo($id){
+            $data=[
+                'getProjects'=>DB::table('FA_PROJECTS')->get(),
+                'emoployees'=>$this->allemployee_apidata(),
+                'accounts'=>$this->allaccounts_apidata(),
+                'getsubopnbal'=>DB::table('FA_CPFSUBOPNBAL')->where('subopnbalid', 1)->first(),
+            ];
+            return view('layouts.mcsfa.updateSubOpeningBalance', $data);
+        }
     
         public function deleteSubOpeningBalance($id){
            DB::table('FA_CPFSUBOPNBAL')->where('subopnblnid', $id)->delete();

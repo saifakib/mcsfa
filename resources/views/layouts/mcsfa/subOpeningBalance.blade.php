@@ -30,7 +30,7 @@
                                 <td style="text-align: center">{{ $value->bal_type }}</td>
 
                                 <td style="text-align: center">
-                                    <a href="" class="btn btn-o btn-primary" value="edit" style="text-align: center;border-radius: 10px;" title="Edit"><i class="fa fa-edit"></i></a>
+                                    <a href="{{ URL::to('/')}}/editsubopeningbalance/{{ $value->subopnbalid }}" class="btn btn-o btn-primary" value="edit" style="text-align: center;border-radius: 10px;" title="Edit"><i class="fa fa-edit"></i></a>
                                     <a class="btn btn-o btn-danger managedata" id="{{$value->subopnbalid}}" value="Delete" style="text-align: center;border-radius: 10px;" title="Delete"><i class="fa fa-remove"></i></a>
                                 </td>
                             </tr>

@@ -191,5 +191,5 @@ Route::get('/subopeningbanalace_create', [\App\Http\Controllers\CPFController::c
 Route::get('/getemporsupplier', [\App\Http\Controllers\CPFController::class, 'getemporsupplier']);
 Route::get('/subopeningbalance', [\App\Http\Controllers\CPFController::class, 'subopeningBalance']);
 Route::post('/subopeningbanalace', [\App\Http\Controllers\CPFController::class, 'subopeningbanalaceSaveUpdate'])->name('subopeningbanalaceSaveUpdate');
-// Route::get('/editopeningbalance/{id}', [\App\Http\Controllers\CPFController::class, 'editServiceInfo']);
+Route::get('/editsubopeningbalance/{id}', [\App\Http\Controllers\CPFController::class, 'editSubServiceInfo']);
 Route::get('/deletesubopeningbalance/{id}', [\App\Http\Controllers\CPFController::class, 'deleteSubOpeningBalance']);
