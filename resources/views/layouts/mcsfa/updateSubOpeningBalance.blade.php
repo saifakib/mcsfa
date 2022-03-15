@@ -37,9 +37,9 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <select name="acc_for" id="accFor" class="form-control inputnumber getSelect" required="">
-                                    <option value="">Select Type</option>
-                                    <option <?php if($getsubopnbal->acc_for == "employee") echo "selected" ?>  value="employee">Employee</option>
-                                    <option <?php if($getsubopnbal->acc_for == "supplier") echo "selected" ?>  value="supplier">Supplier</option>
+                                    <option value="{{$getsubopnbal->acc_for}}">{{$getsubopnbal->acc_for}}</option>
+                                    <option  value="employee">Employee</option>
+                                    <option  value="supplier">Supplier</option>
                                 </select>
                             </div> 
                         </div>
@@ -51,6 +51,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <select name="emporsup_id" class="form-control inputnumber getSelect" id="setes" required="">
+                                    <option value="{{$getsubopnbal->emporsup_id}}">{{$dataname}}</option>
                                 </select>
                             </div> 
                         </div>

@@ -112,7 +112,7 @@ class CPFController extends Controller
                 $employees = $this->allemployee_apidata();
                 echo'<option value = "">Select Employee</option>';
                 foreach ($employees['items'] as $values) {
-                    echo'<option name="emporsup_id" value = "' . $values['employe_id'] . '">' . $values['employe_registration_number'] . $values['name_english'] . $values['designation'] .'</option>';
+                    echo'<option name="emporsup_id" value = "' . $values['employe_id'] . '">' . $values['employe_registration_number'].' => '. $values['name_english'] .' => '. $values['designation'] .'</option>';
                 }
             } else {
                 $supliers = DB::table('FA_SUPLIERTYPELIST')->get();
@@ -160,11 +160,26 @@ class CPFController extends Controller
         }
     
         public function editSubServiceInfo($id){
+
+            $result=DB::table('FA_CPFSUBOPNBAL')->where('subopnbalid',$id)->first();
+            $acc_for=$result->acc_for;
+            $esid=$result->emporsup_id;
+
+            if($acc_for=='employee'){
+                $response = Http::get("http://192.168.3.8:8085/ords/hrm/employees/v_emp_all/" . $esid);
+                $decoded = json_decode($response, true);
+                $dataname =$decoded['employe_registration_number'].' => '. $decoded['name_english'] .' => '. $decoded['designation'];
+            }else{
+                $response=DB::table('FA_SUPLIERTYPELIST')->where('suptypeid',$esid)->first();
+                $dataname=$response->suplier_code.' => '.$response->supp_name;
+            }
+            
             $data=[
                 'getProjects'=>DB::table('FA_PROJECTS')->get(),
                 'emoployees'=>$this->allemployee_apidata(),
                 'accounts'=>$this->allaccounts_apidata(),
-                'getsubopnbal'=>DB::table('FA_CPFSUBOPNBAL')->where('subopnbalid', 1)->first(),
+                'dataname'=>$dataname,
+                'getsubopnbal'=>$result,
             ];
             return view('layouts.mcsfa.updateSubOpeningBalance', $data);
         }
