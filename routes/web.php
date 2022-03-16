@@ -86,11 +86,6 @@ Route::get('/employesuspend/{id}', [\App\Http\Controllers\MisController::class, 
 Route::get('/deleteemployesuspend/{id}', [\App\Http\Controllers\MisController::class, 'deleteemployesuspend']);
 
 
-
-//loan management
-
-
-
 // Professional Information
 Route::get('/professionalinfo', [\App\Http\Controllers\MisController::class, 'professionalinfomanage']);
 Route::post('/professionalinfo', [\App\Http\Controllers\MisController::class, 'professionsaveupdate'])->name('professionsaveupdate');
@@ -158,6 +153,11 @@ Route::get('/deleteserviceinfo/{id}', [\App\Http\Controllers\MisController::clas
 // Vat and Tax Payment
 Route::get('/vattaxpayment', [\App\Http\Controllers\MisController::class, 'vattaxpayment']);
 
+
+
+// Payble Account Payment
+Route::get('/payblepayment', [\App\Http\Controllers\AccountsController::class, 'payblepayment']);
+Route::get('/payblepaymentsearch', [\App\Http\Controllers\AccountsController::class, 'payblePaymentSearch']);
 
 
 

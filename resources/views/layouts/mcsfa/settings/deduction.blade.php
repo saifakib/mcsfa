@@ -93,7 +93,7 @@
                                 <td style="text-align: center">{{ $value->account}}</td>
                                 <td style="text-align: center">{{ $value->inst_acc }}</td>
                                 <td style="text-align: center">{{ $value->dep_acct }}</td>
-                                <td style="text-align: center">{{ $value->dept_inst_acc }}</td>
+                                <td style="text-align: center">{{ $value->dep_inst_acc }}</td>
                                 <td style="text-align: center">
                                     <button class="btn btn-o btn-primary managedata" id="{{$value->deductionid}}" value="edit" style="text-align: center;border-radius: 10px;"><i class="fa fa-edit"></i> Edit</button>
                                     <button class="btn btn-o btn-danger managedata" id="{{$value->deductionid}}" value="delete" style="text-align: center;border-radius: 10px;"><i class="fa fa-trash-o"></i> Delete</button>

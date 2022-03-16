@@ -60,7 +60,7 @@ class MisController extends Controller
             'account' => $request->account,
             'inst_acc' => $request->inst_acc,
             'dep_acct' => $request->dep_acct,
-            'dept_inst_acc' => $request->dept_inst_acc,
+            'dep_inst_acc' => $request->dept_inst_acc,
         ];
 
         if($taskstatus == 'save') {
@@ -234,11 +234,14 @@ class MisController extends Controller
         $getresult=$this->single_empapidata($result->emp_no);
 
         $data = [
-            'employe_id'=>$getresult['employe_id'],
-            'empolye_name'=>$getresult['name_english'],
-            'designation'=>$getresult['designation'],
-            'departement'=>$getresult['departement'],
-            'allowance_code'=>$result->allowance_code,
+            // 'employe_id'=>$getresult['employe_id'],
+            // 'empolye_name'=>$getresult['name_english'],
+            // 'designation'=>$getresult['designation'],
+            // 'departement'=>$getresult['departement'],
+            // 'allowance_code'=>$result->allowance_code,
+            'emoployees'=>$this->allemployee_apidata(),
+            'allallowance'=>DB::table('FA_ALL_ALLOWANCE')->where('allallowanceid', $id)->first(),
+            'allowancecode'=> DB::table('FA_ALLOWANCE')->get(),
         ];
         return view('layouts.mcsfa.updateAllowance', $data);
     }

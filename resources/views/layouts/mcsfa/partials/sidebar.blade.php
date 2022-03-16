@@ -2,10 +2,10 @@
     <section class="sidebar">
     <div class="user-panel"> </div>
     <ul class="sidebar-menu" data-widget="tree">
-    <li id="Dashboard"><a href="/dashboard" style="font-size:12px"> <span>Dashboard</span></a></li>
+    {{-- <li id="Dashboard"><a href="/dashboard" style="font-size:12px"> <span>Dashboard</span></a></li>
 
     
-    {{-- <li id="SettingsPanel" class="treeview">
+    <li id="SettingsPanel" class="treeview">
         <a href="javascript:void(0)" style="">
             <span><i class="fa fa-gears"></i> Settings</span>
             <span class="pull-right-container">
@@ -46,10 +46,10 @@
             <li id="budgetBill"><a  href="{{ URL::to('/')}}/bill"><i class="fa fa-circle-o"></i> Bill</a></li>
             <li id="BillManage"><a  href="{{ URL::to('/')}}/billmanage"><i class="fa fa-circle-o"></i> Manage Bill</a></li>
         </ul>
-    </li>
+    </li> --}}
     {{-- <li id="BillRegistation"><a href="{{ URL::to('/')}}/billregister" style="font-size:12px"> <span>Bill Registation</span></a></li> --}}
-{{-- 
-    <li id="LoanManagePanel" class="treeview">
+
+    {{-- <li id="LoanManagePanel" class="treeview">
         <a href="javascript:void(0)" style="">
             <span> Loan Management</span>
             <span class="pull-right-container">
@@ -94,6 +94,8 @@
 
     <li id="ServiceInfo"><a href="{{ URL::to('/')}}/serviceinfo" style="font-size:12px"> <span>Service Info</span></a></li>
       --}}
+
+      
     <li id="OpeningBalance" class="treeview">
         <a style="font-size:12px" href="javascript:void(0)"> Opening Balance
             <span class="pull-right-container">
@@ -130,6 +132,8 @@
             <!--<li id="cpfvoucherReport"><a style="font-size:12px" href="">Report</a></li>-->
         </ul>
     </li>
+
+    <li id="PayableAccount"><a href="{{ URL::to('/')}}/payblepayment" style="font-size:12px"> <span>Payable Account Payment</span></a></li>
 </ul>
 </section>
 </aside>
