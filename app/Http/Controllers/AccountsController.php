@@ -28,7 +28,7 @@ class AccountsController extends Controller
             'getProjects'=>DB::table('FA_PROJECTS')->get(),
             'accounts'=>DB::table('FA_CHARTACCODES')->get(),
             'getPayblePaymentsVou'=>DB::table('FA_VOUCHER')
-            ->leftJoin('FA_VOUCHERS', 'FA_VOUCHER.id', '=', 'FA_VOUCHERS.vcid')
+            ->leftJoin('FA_VOUCHERS', 'FA_VOUCHER.newid', '=', 'FA_VOUCHERS.vcid')
             ->where('project_code', $project_code)
             ->where('vdate', $vdate)
             ->where('accode',$accode)
