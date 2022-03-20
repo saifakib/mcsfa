@@ -12,7 +12,7 @@ class AccountsController extends Controller
         $data = [
             'getProjects'=>DB::table('FA_PROJECTS')->get(),
             'accounts'=>DB::table('FA_CHARTACCODES')->get(),
-            'getPayblePayments'=>[]
+            'getPayblePaymentsVou'=>[]
         ];
         return view('layouts.mcsfa.paybleAccountPayment',$data);
     }
@@ -27,7 +27,7 @@ class AccountsController extends Controller
         $data = [
             'getProjects'=>DB::table('FA_PROJECTS')->get(),
             'accounts'=>DB::table('FA_CHARTACCODES')->get(),
-            'getVoucher'=>DB::table('FA_VOUCHER')
+            'getPayblePaymentsVou'=>DB::table('FA_VOUCHER')
             ->leftJoin('FA_VOUCHERS', 'FA_VOUCHER.id', '=', 'FA_VOUCHERS.vcid')
             ->where('project_code', $project_code)
             ->where('vdate', $vdate)

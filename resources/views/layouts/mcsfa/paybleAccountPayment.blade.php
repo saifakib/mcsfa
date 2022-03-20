@@ -87,7 +87,7 @@ Payble Account Payment
                                 @php
                                 $i = 1
                                 @endphp
-                                @foreach($getVoucher as $value)
+                                @foreach($getPayblePaymentsVou as $value)
                                 <tr>
                                     <td style="text-align: center">{{ $i }}</td>
                                     <td style="text-align: center">{{ $value->accode }}</td>
