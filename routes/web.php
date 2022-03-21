@@ -193,3 +193,10 @@ Route::get('/subopeningbalance', [\App\Http\Controllers\CPFController::class, 's
 Route::post('/subopeningbanalace', [\App\Http\Controllers\CPFController::class, 'subopeningbanalaceSaveUpdate'])->name('subopeningbanalaceSaveUpdate');
 Route::get('/editsubopeningbalance/{id}', [\App\Http\Controllers\CPFController::class, 'editSubServiceInfo']);
 Route::get('/deletesubopeningbalance/{id}', [\App\Http\Controllers\CPFController::class, 'deleteSubOpeningBalance']);
+
+
+
+// FDR Statement Report
+Route::get('/fdrStatementReport', [\App\Http\Controllers\CPFController::class, 'fdrStatementReport']);
+Route::get('/viewpdfgenerate', [\App\Http\Controllers\CPFController::class, 'viewpdfgenerate']);
+Route::get('fdrStatementReport-pdf', [\App\Http\Controllers\CPFController::class, 'generateFDRPDF']);

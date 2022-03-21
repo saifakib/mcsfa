@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\HTTP;
 use DateTime;
+use PDF;
 
 class CPFController extends Controller
 {
@@ -191,5 +192,31 @@ class CPFController extends Controller
             'alert-type' => 'success'
             );
             return redirect('/subopeningbalance')->with($notification);
+        }
+
+
+
+        // FDR Statement Report
+        public function fdrStatementReport() {
+            $data = [
+                'getfdrbankinfo'=>DB::table('FA_FDRINFO')->select('bankname')->distinct()->get(),
+            ];
+            return view('layouts.mcsfa.fdrStatementReport',$data);
+        }
+        public function viewpdfgenerate() {
+            $data = [
+                'getfdrinfo'=>DB::table('FA_FDRINFO')->get(),
+            ];
+            return view('fdrStatement', $data);
+        }
+        public function generateFDRPDF() {
+            // $data = [
+            //     'getfdrinfo'=>DB::table('FA_FDRINFO')->get(),
+            // ];
+            $data = [
+                'getfdrbankinfo'=>DB::table('FA_FDRINFO')->select('bankname')->distinct()->get(),
+            ];
+            $pdf = PDF::loadView('fdrStatement', $data)->setPaper('a4', 'landscape')->setWarnings(false);
+            return $pdf->download('fdrStatement.pdf');
         }
 }
