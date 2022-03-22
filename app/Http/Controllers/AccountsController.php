@@ -35,6 +35,17 @@ class AccountsController extends Controller
             ->get(),
         ];
         return view('layouts.mcsfa.paybleAccountPayment',$data);
+    }
 
+
+
+
+
+
+
+    /********************** Salary Bill  ***********************/
+    
+    public function salaryBill() {
+        return view('layouts.mcsfa.salaryBill');
     }
 }

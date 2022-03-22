@@ -200,3 +200,13 @@ Route::get('/deletesubopeningbalance/{id}', [\App\Http\Controllers\CPFController
 Route::get('/fdrStatementReport', [\App\Http\Controllers\CPFController::class, 'fdrStatementReport']);
 Route::get('/viewpdfgenerate', [\App\Http\Controllers\CPFController::class, 'viewpdfgenerate']);
 Route::get('fdrStatementReport-pdf', [\App\Http\Controllers\CPFController::class, 'generateFDRPDF']);
+
+
+
+
+
+
+
+
+// Salary Bill
+Route::get('/salaryBill', [\App\Http\Controllers\AccountsController::class, 'salaryBill']);
