@@ -48,4 +48,10 @@ class AccountsController extends Controller
     public function salaryBill() {
         return view('layouts.mcsfa.salaryBill');
     }
+
+
+    //****************Salary Statement ****************** */
+    public function salaryStatement() {
+        return view('layouts.mcsfa.salaryStatement');
+    }
 }

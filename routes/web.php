@@ -210,3 +210,7 @@ Route::get('fdrStatementReport-pdf', [\App\Http\Controllers\CPFController::class
 
 // Salary Bill
 Route::get('/salaryBill', [\App\Http\Controllers\AccountsController::class, 'salaryBill']);
+
+
+// Salary Statement
+Route::get('/salaryStatement', [\App\Http\Controllers\AccountsController::class, 'salaryStatement']);
