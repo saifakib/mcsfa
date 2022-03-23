@@ -1,0 +1,8 @@
+@media print {
+       
+    .cls {
+        color: green;
+        background-color: blue
+    }
+
+}
