@@ -52,6 +52,6 @@ class AccountsController extends Controller
 
     //****************Salary Statement ****************** */
     public function salaryStatement() {
-        return view('layouts.mcsfa.salaryStatement');
+        return view('layouts.mcsfa.satest');
     }
 }
