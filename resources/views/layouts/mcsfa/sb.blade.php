@@ -1,11 +1,5 @@
-@extends('layouts.mcsfa.app')
-@section('content')
 
 
-<div id="contentWrapper" style="font-family: Montserrat">
-    <!-- Content Header (Page header) -->
-    <div class="content-wrapper">
-    <div class="content animated fadeInRight"><br><br>
         <div class="row">
             <div class="col-md-12">
                 <button class="btn" onclick="window.history.back()" style="border-radius:10px;float: left;margin-top:-10px;margin-left: 10px;background:#000;color: #fff"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>
@@ -541,24 +535,3 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-    <script type="text/javascript">
-        function printDi(printarea) {
-            var printContents = document.getElementById(printarea).innerHTML;
-            var originalContents = document.body.innerHTML;
-            document.body.innerHTML = printContents;
-            window.print();
-            document.body.innerHTML = originalContents;
-        }
-    </script>
-    <script>
-        $(document).ready(function () {
-            $("#PersonalInfo").addClass('active');
-        });
-    </script>
-</div>
-
-
-
-@endsection
