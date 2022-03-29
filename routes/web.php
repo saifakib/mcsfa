@@ -214,3 +214,13 @@ Route::get('/salaryBill', [\App\Http\Controllers\AccountsController::class, 'sal
 
 // Salary Statement
 Route::get('/salaryStatement', [\App\Http\Controllers\AccountsController::class, 'salaryStatement']);
+
+
+// Set allowance to a employee
+Route::get('/allowanceset', [\App\Http\Controllers\MisController::class, 'allowanceset']);
+Route::post('/allowanceset', [\App\Http\Controllers\MisController::class, 'allowancesetpostupdate'])->name('allowancesetpostupdate');
+
+
+// Set deductopn to a employee
+Route::get('/deductionset', [\App\Http\Controllers\MisController::class, 'deductionset']);
+Route::post('/deductionset', [\App\Http\Controllers\MisController::class, 'deductionsetpostupdate'])->name('deductionsetpostupdate');

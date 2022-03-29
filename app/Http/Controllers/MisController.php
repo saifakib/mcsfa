@@ -274,6 +274,32 @@ class MisController extends Controller
         }
     }
 
+    // set allowance to a epployee
+    public function allowanceset()
+    {
+        $data = [
+            'alloeances' => DB::table('FA_ALLOWANCE')->get(),
+            'emoployees'=>$this->allemployee_apidata()
+        ];
+        return view('layouts.mcsfa.allowanceset', $data); 
+    }
+
+    public function allowancesetpostupdate(Request $request)
+    {
+        
+        $dataname1=$request->dataname1;
+        $apstatus1=$request->apstatus1;
+        $amporper1=$request->amporper1;
+
+
+            $data = [
+                "employeeid" => $request->employe_id,
+                "alloeances" => $request->alloeances[$i],
+                "apstatus" => $request->apstatus[$i],
+                "amporper" => $request->amporper[$i],
+            ];
+    }
+
     /********************** Deduction Info Controller ************************ */
 
     // index method [note: need to join query here]
@@ -348,6 +374,33 @@ class MisController extends Controller
         if($taskstatus == 'search') {
             echo "searching";
         }
+    }
+
+    
+    // set deduction to a epployee
+    public function deductionset()
+    {
+        $data = [
+            'deductions' => DB::table('FA_DEDUCTION')->get(),
+            'emoployees'=>$this->allemployee_apidata()
+        ];
+        return view('layouts.mcsfa.deductionset', $data); 
+    }
+
+    public function deductionsetpostupdate(Request $request)
+    {
+        
+        // $dataname1=$request->dataname1;
+        // $apstatus1=$request->apstatus1;
+        // $amporper1=$request->amporper1;
+
+
+        //     $data = [
+        //         "employeeid" => $request->employe_id,
+        //         "deductiions" => $request->deductiions[$i],
+        //         "apstatus" => $request->apstatus[$i],
+        //         "amporper" => $request->amporper[$i],
+        //     ];
     }
 
 

@@ -46,7 +46,7 @@ class AccountsController extends Controller
     /********************** Salary Bill  ***********************/
     
     public function salaryBill() {
-        return view('layouts.mcsfa.salaryBill');
+        return view('layouts.mcsfa.salaryBill'); 
     }
 
 

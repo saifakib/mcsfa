@@ -26,7 +26,9 @@
         </ul>
     </li>                                        
     <li id="Allowance"><a href="{{ URL::to('/')}}/allowance" style="font-size:12px"> <span>Allowance</span></a></li>
+    <li id="AllowanceSet"><a href="{{ URL::to('/')}}/allowanceset" style="font-size:12px"> <span>Allowance Set</span></a></li>
     <li id="Deduction"><a href="{{ URL::to('/')}}/deduction" style="font-size:12px"> <span>Deduction</span></a></li>
+    <li id="DeductionSet"><a href="{{ URL::to('/')}}/deductionset" style="font-size:12px"> <span>Deduction Set</span></a></li>
     <li id="EmployeeSuspend"><a href="{{ URL::to('/')}}/employesuspend" style="font-size:12px"> <span>Employee Suspend Info</span></a></li>
     <li id="ProfessionalInfo"><a href="{{ URL::to('/')}}/professionalinfo" style="font-size:12px"> <span>Professional Info</span></a></li>
     <li id="PersonalInfo"><a href="{{ URL::to('/')}}/personalinfo/807" style="font-size:12px"> <span>Personal Info</span></a></li>
@@ -134,6 +136,7 @@
     </li>
 
     <li id="PayableAccount"><a href="{{ URL::to('/')}}/payblepayment" style="font-size:12px"> <span>Payable Account Payment</span></a></li>
+
 </ul>
 </section>
 </aside>
