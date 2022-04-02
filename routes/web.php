@@ -224,3 +224,22 @@ Route::post('/allowanceset', [\App\Http\Controllers\MisController::class, 'allow
 // Set deductopn to a employee
 Route::get('/deductionset', [\App\Http\Controllers\MisController::class, 'deductionset']);
 Route::post('/deductionset', [\App\Http\Controllers\MisController::class, 'deductionsetpostupdate'])->name('deductionsetpostupdate');
+
+
+// Set salary increment
+Route::get('/salaryincrement/{employeeid}', [\App\Http\Controllers\MisController::class, 'salaryincrement']);
+
+
+
+// Set area type
+Route::get('/missettings/area', [\App\Http\Controllers\MisController::class, 'areaSetting']);
+Route::post('/saveupdatearea', [\App\Http\Controllers\MisController::class, 'saveupdatearea'])->name('saveupdatearea');
+Route::get('/area/{id}', [\App\Http\Controllers\MisController::class, 'getarea']);
+Route::get('/deletearea/{id}', [\App\Http\Controllers\MisController::class, 'deletearea']);
+
+
+// Set location under area
+Route::get('/missettings/location', [\App\Http\Controllers\MisController::class, 'locationSetting']);
+Route::post('/saveupdatelocation', [\App\Http\Controllers\MisController::class, 'saveupdatelocation'])->name('saveupdatelocation');
+Route::get('/location/{id}', [\App\Http\Controllers\MisController::class, 'getlocation']);
+Route::get('/deletelocation/{id}', [\App\Http\Controllers\MisController::class, 'deletelocation']);

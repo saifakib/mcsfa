@@ -160,11 +160,108 @@ class MisController extends Controller
     
 
 
+    /********************** Area Type Controller ************************ */
+
+    // get House Info
+    public function areaSetting() {
+        $data=[
+            'getAreaType'=> DB::table('FA_AREATYPE')->get(),
+        ];
+        return view('layouts.mcsfa.settings.areaType', $data);
+    }
+
+    // post a house info
+    public function saveupdatearea(Request $request)
+    {
+        $taskstatus = $request->taskstatus;
+        $areatype_id = $request->dataid;
+
+        $data = [
+            'areatype_name' => $request->areatype_name,
+        ];
+
+        if($taskstatus == 'save') {
+            DB::table('FA_AREATYPE')->insert($data);
+            $message = 'Saved';
+        }
+        else {
+            DB::table('FA_AREATYPE')->where('areatype_id', $areatype_id)->update($data);
+            $message = 'Updated';
+        }
+        $notification = array(
+            'message' => "Area Info $message Succesfully",
+            'alert-type' => 'success'
+        );
+        return redirect('/missettings/area')->with($notification);
+    }
+
+    public function getarea($id){
+        $result=DB::table('FA_AREATYPE')->where('areatype_id', $id)->first();
+        return response()->json($result);
+    }
+
+    // delete a single house info
+    public function deletearea($id){
+       DB::table('FA_AREATYPE')->where('areatype_id', $id)->delete();
+       $notification = array(
+        'message' => "Area Info Deleted Succesfully",
+        'alert-type' => 'success'
+        );
+        return redirect('/missettings/area')->with($notification);
+    }
 
 
 
+        /********************** Location Type Controller ************************ */
+    // get House Info
+    public function locationSetting() {
+        $data=[
+            'getAreaType'=> DB::table('FA_AREATYPE')->get(),
+            'getLocation'=> DB::table('FA_LOCATION')->leftJoin('FA_AREATYPE', 'FA_LOCATION.areatype_id', '=', 'FA_AREATYPE.areatype_id')->get(),
+        ];
+        return view('layouts.mcsfa.settings.location', $data);
+    }
 
+    // post a house info
+    public function saveupdatelocation(Request $request)
+    {
+        $taskstatus = $request->taskstatus;
+        $location_id = $request->dataid;
 
+        $data = [
+            'areatype_id' => $request->areatype_id,
+            'location_name' => $request->location_name,
+        ];
+
+        if($taskstatus == 'save') {
+            DB::table('FA_LOCATION')->insert($data);
+            $message = 'Saved';
+        }
+        else {
+            DB::table('FA_LOCATION')->where('location_id', $location_id)->update($data);
+            $message = 'Updated';
+        }
+        $notification = array(
+            'message' => "Location Info $message Succesfully",
+            'alert-type' => 'success'
+        );
+        return redirect('/missettings/location')->with($notification);
+    }
+
+    public function getlocation($id){
+        $result=DB::table('FA_LOCATION')->where('location_id', $id)->first();
+        return response()->json($result);
+    }
+
+    // delete a single house info
+    public function deletelocation($id){
+       DB::table('FA_LOCATION')->where('location_id', $id)->delete();
+       $notification = array(
+        'message' => "Location Info Deleted Succesfully",
+        'alert-type' => 'success'
+        );
+        return redirect('/missettings/location')->with($notification);
+    }
 
 /********************** Allowance Controller ************************ */
 
@@ -1014,6 +1111,25 @@ class MisController extends Controller
                 'getVatTaxs'=>[]
             ];
             return view('layouts.mcsfa.vattaxpayment', $data);
+        }
+
+
+
+        // Salary Increment
+        public function salaryincrement($employeeid) 
+        {
+            $response = Http::get("http://192.168.3.8:8081/fa/singleemployeegradeapidata/" . $employeeid);
+            $decoded = json_decode($response, true);
+            $grades = explode("-",$decoded['fullscale']);
+            $basic = $decoded['basic'];
+            $index = array_search($basic, $grades);
+
+            echo '<pre>';
+            print_r($basic);
+            print_r($grades);
+            //print_r($index);
+            print_r($grades[$index+1]);
+            exit();
         }
 }
 

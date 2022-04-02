@@ -156,7 +156,7 @@
     <tbody>
         <tr style="text-transform: capitalize;font-family:Montserrat">
             <td style="text-align: center; vertical-align: baseline; width: 50px" rowspan="11">80</td>
-            <td style="text-align: center; vertical-align: baseline; width: 200px" rowspan="11">Naren Das, Steno-typist cum Computer Operator, 11000-52344-23423-43523-452345-123412-435424-5645-5646456-547546-35746-57456</td>
+            <td style="text-align: center; vertical-align: baseline; width: 200px" rowspan="11">Naren Das, Steno-typist cum Computer Operator, 11000-52344-23423-43523-452345-123412</td>
             <td style="text-align: center; vertical-align: baseline;  width: 100px" rowspan="11">17,960.00</td>
             <td  style="" colspan="4"></td >
             <td  style="text-align: center; vertical-align: baseline; width: 100px" rowspan="11">31,334.00</td >

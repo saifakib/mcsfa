@@ -23,6 +23,8 @@
             <li id="Allw"><a style="" href="{{ URL::to('/')}}/missettings/allowance">Allowance Type</a></li>
             <li id="Deduct"><a style="" href="{{ URL::to('/')}}/missettings/deduction">Deduction Type</a></li>
             <li id="House"><a style="" href="{{ URL::to('/')}}/missettings/house">House Type</a></li>
+            <li id="Areas"><a style="" href="{{ URL::to('/')}}/missettings/area">Area Type</a></li>
+            <li id="Locations"><a style="" href="{{ URL::to('/')}}/missettings/location">Add Location</a></li>
         </ul>
     </li>                                        
     <li id="Allowance"><a href="{{ URL::to('/')}}/allowance" style="font-size:12px"> <span>Allowance</span></a></li>
