@@ -243,3 +243,8 @@ Route::get('/missettings/location', [\App\Http\Controllers\MisController::class,
 Route::post('/saveupdatelocation', [\App\Http\Controllers\MisController::class, 'saveupdatelocation'])->name('saveupdatelocation');
 Route::get('/location/{id}', [\App\Http\Controllers\MisController::class, 'getlocation']);
 Route::get('/deletelocation/{id}', [\App\Http\Controllers\MisController::class, 'deletelocation']);
+
+
+
+//Tax calculate
+Route::get('/taxcalculate/{employeeid}', [\App\Http\Controllers\MisController::class, 'taxcalculate']);

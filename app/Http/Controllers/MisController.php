@@ -1131,6 +1131,113 @@ class MisController extends Controller
             print_r($grades[$index+1]);
             exit();
         }
+
+
+        // rivet calculate
+        public function rivetcalculate($total_basic, $taxamount) {
+            $rivet = round(((($total_basic*25)/100)*15)/100);
+            $taketax = $taxamount - $rivet;
+            if($taketax < 5000 ) {
+                $taketax = 5000;
+            }
+            return round($taketax/12);
+        }
+
+        // Tax Calculate function
+        public function taxcalculate($employeeid) 
+        {
+
+            $response = Http::get("http://192.168.3.8:8081/fa/singleemployeegradeapidata/" . $employeeid);
+            $decoded = json_decode($response, true);
+            $basic = $decoded['basic'];
+
+
+            $total_basic = $basic*14;
+            $total_cpf_contrib = round((($basic*8.33)/100)*12);
+
+            $taxable_income = $total_basic + $total_cpf_contrib;
+            $total = $taxable_income;
+
+            $taxamount = 0;
+            $monthbasistax = 0;
+            
+            
+            if($total > 0) {
+                if($total < 300000) {
+                    $taxamount += ($total*0)/100;
+                }
+                if($total >= 300000) {
+                    $taxamount += (300000*0)/100;
+                    $total = $total - 300000;
+                    if($total > 0) {
+                        if($total < 100000) {
+                            $taxamount += ($total*5)/100;
+                        }
+                        if($total >= 100000) {
+                            $taxamount += (100000*5)/100;
+                            $total = $total - 100000;
+                            if($total > 0) {
+                                if($total < 300000) {
+                                    $taxamount += round(($total*10)/100);
+                                }
+                                if($total >= 300000) {
+                                    $taxamount += (300000*10)/100;
+                                    $total = $total - 300000;
+                                    if($total > 0) {
+                                        if($total < 400000) {
+                                            $taxamount += round(($total*15)/100);
+                                        }
+                                        if($total >= 400000) {
+                                            $taxamount += (400000*15)/100;
+                                            $total = $total - 400000;
+                                            if($total > 0) {
+                                                if($total < 500000) {
+                                                    $taxamount += round(($total*20)/100);
+                                                    $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
+                                                }
+                                                if($total >= 500000) {
+                                                    $taxamount += (500000*20)/100;
+                                                    $total = $total - 500000;
+                                                    $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
+                                                }
+                                                else {
+                                                    $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
+                                                }
+                                            } else {
+                                                $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
+                                            }
+                                        }
+                                        else {
+                                            $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
+                                        }
+                                    } else {
+                                        $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
+                                    }
+                                }
+                                else {
+                                    $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
+                                }
+                            } else {
+                                $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
+                            }
+                        }
+                        else {
+                            $monthbasistax = $this->rivetcalculate($total_basic, $taxamount); 
+                        }
+                    } else {
+                        $monthbasistax = $this->rivetcalculate($total_basic, $taxamount); 
+                    }
+                } 
+                else {
+                    $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
+                } 
+            } else {
+                $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
+            }
+            echo '<pre>';
+            print_r($monthbasistax);
+            exit();
+        }
 }
 
 
