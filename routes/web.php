@@ -248,3 +248,7 @@ Route::get('/deletelocation/{id}', [\App\Http\Controllers\MisController::class, 
 
 //Tax calculate
 Route::get('/taxcalculate/{employeeid}', [\App\Http\Controllers\MisController::class, 'taxcalculate']);
+
+
+// find basic salary
+Route::get('/findbasic/{employeeid}', [\App\Http\Controllers\MisController::class, 'findbasic']);
