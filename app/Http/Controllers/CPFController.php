@@ -116,10 +116,10 @@ class CPFController extends Controller
                     echo'<option name="emporsup_id" value = "' . $values['employe_id'] . '">' . $values['employe_registration_number'].' => '. $values['name_english'] .' => '. $values['designation'] .'</option>';
                 }
             } else {
-                $supliers = DB::table('FA_SUPLIERTYPELIST')->get();
+                $supliers = DB::table('FA_SUPLIERLIST')->get();
                 echo'<option value = "">Select Supplier</option>';
                 foreach ($supliers as $value) {
-                    echo'<option name="emporsup_id" value = "' . $value->suptypeid . '">' . $value->suplier_code .' => '. $value->supp_name .'</option>';
+                    echo'<option name="emporsup_id" value = "' . $value->suptype . '">' . $value->supcode .' => '. $value->supname .'</option>';
                 }
             }
         }
@@ -218,5 +218,46 @@ class CPFController extends Controller
             ];
             $pdf = PDF::loadView('fdrStatement', $data)->setPaper('a4', 'landscape')->setWarnings(false);
             return $pdf->download('fdrStatement.pdf');
+        }
+        public function setHouseAllowance($employeeId) {
+
+            $response = Http::get("http://192.168.3.10/fa/singleemployeegradeapidata/" . $employeeId);
+            $decoded = json_decode($response, true);
+
+            $areatype_id = DB::table('FA_LOCATION')->select('areatype_id')->where('location_name', $decoded['location'])->first();
+
+            if(!@$areatype_id->areatype_id) {
+                $areatype_id = DB::table('FA_AREATYPE')->where('areatype_name', 'Others')->pluck('areatype_id')[0];
+            }
+
+            // if basic is null then basic set 0
+            if(!$decoded['basic']) {
+                $decoded['basic'] = 0;
+            }
+
+            $basic = (int)$decoded['basic'];
+
+            $gadget = DB::table('FA_HOUSEGADGET')
+            ->where('scale_str', '<=', $basic)
+            ->where('scale_end', '>=', $basic)
+            ->where('area_id', $areatype_id)
+            ->get();
+
+            // $gadget = DB::table('FA_HOUSEGADGET')
+            // ->where([
+            //     ['scale_str', '<=', $basic],
+            //     ['scale_end', '>=', $basic],
+            //     ['area_id', $areatype_id]
+            // ])->first();
+
+            echo '<pre>';
+            print_r($gadget);
+            exit();
+            $percentWiseRentAmt = (($decoded['basic']/100)*$gadget->percentage);
+
+            if($percentWiseRentAmt < $gadget->min_amount) {
+                return $gadget->min_amount;
+            }
+            return $percentWiseRentAmt;
         }
 }

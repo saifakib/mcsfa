@@ -14,7 +14,7 @@
             <div class="panel" style="border: none">
                 <div id="collapseTwo" class="panel-collapse collapse">
                     <div class="box-body" style="border: 2px solid #3c8dbc">
-                        <form method="post" action="{{ route('houseRentSaveUpdate') }}">
+                        <form method="post" action="{{ route('houseGadgetSaveUpdate') }}">
                             @csrf
                             <input type="hidden" name="taskstatus" value="save">
                             <div class="row">
@@ -68,31 +68,27 @@
                         <thead>
                             <tr style="background:#3c8dbc;color:#fff;font-weight:bold;text-transform: uppercase;">
                                 <th style="text-align: center">ID</th>
-                                <th style="text-align: center">Location</th>
                                 <th style="text-align: center">Basic Scale</th>
-                                <th style="text-align: center">Max Amount</th>
-                                <th style="text-align: center">Min Amount</th>
+                                <th style="text-align: center">Area</th>
+                                <th style="text-align: center">Minimum Amount</th>
                                 <th style="text-align: center">Percentage</th>
-                                <th style="text-align: center">Account Code</th>
                                 <th style="text-align: center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach($getHouseRent as $value)
+                            @foreach($getHouseGadget as $value)
                             <tr>
-                                <td style="text-align: center">{{ $value->houserentid}}</td>
-                                <td style="text-align: center">{{ $value->location_id }}</td>
-                                <td style="text-align: center">{{ $value->basic_scale}}</td>
-                                <td style="text-align: center">{{ $value->max_amount }}</td>
+                                <td style="text-align: center">{{ $value->hg_id }}</td>
+                                <td style="text-align: center">{{ $value->basic_scale }}</td>
+                                <td style="text-align: center">{{ $value->areatype_name }}</td>
                                 <td style="text-align: center">{{ $value->min_amount }}</td>
                                 <td style="text-align: center">{{ $value->percentage }}</td>
-                                <td style="text-align: center">{{ $value->account_code }}</td>
                                 <td style="text-align: center">
-                                    <button class="btn btn-o btn-primary managedata" id="{{$value->houserentid}}" value="edit" style="text-align: center;border-radius: 10px;"><i class="fa fa-edit"></i> Edit</button>
-                                    <button class="btn btn-o btn-danger managedata" id="{{$value->houserentid}}" value="delete" style="text-align: center;border-radius: 10px;"><i class="fa fa-trash-o"></i> Delete</button>
+                                    <button class="btn btn-o btn-primary managedata" id="{{$value->hg_id}}" value="edit" style="text-align: center;border-radius: 10px;"><i class="fa fa-edit"></i> Edit</button>
+                                    <button class="btn btn-o btn-danger managedata" id="{{$value->hg_id}}" value="delete" style="text-align: center;border-radius: 10px;"><i class="fa fa-trash-o"></i> Delete</button>
                                 </td>
                             </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -109,12 +105,12 @@
                         <h3 class="modal-title text-center">Update House Rent Info</h3>
                     </div>
                     <div class="modal-body">
-                        <form method="post" action="{{route('houseRentSaveUpdate')}}">
+                        <form method="post" action="{{route('houseGadgetSaveUpdate')}}">
                             {{csrf_field()}}
                             <input type="hidden" name="taskstatus" value="update">
                             <input type="hidden" name="dataid" id="setdataid">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label>Basic Scale <span style="color: red">*</span></label>
                                     <select name="basic_scale" class="form-control inputnumber" required="">
                                         <option value="" selected="" disabled="">Select Type</option>
@@ -124,7 +120,7 @@
                                         <option value="35501-78000">35501-78000</option>
                                     </select>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label>Location Name <span style="color: red">*</span></label>
                                     <select name="areatype_id" id="setlocation_id" class="form-control inputnumber" required="">
                                         <option value="" selected="" disabled="">Select Area</option>
@@ -135,30 +131,18 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-4">
-                                    <label>Max Amount <span style="color: red">*</span></label>
-                                    <div class="form-group">
-                                        <input type="number" name="max_amt" id="setmax_amount" class="form-control inputnumber" placeholder="Maximum Amount" required="">
-                                    </div>
-                                </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label>Min Amount <span style="color: red">*</span></label>
                                     <div class="form-group">
                                         <input type="number" name="min_amt" id="setmin_amount" class="form-control inputnumber" placeholder="Minimum Amount" required="">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label>Percentage <span style="color: red">*</span></label>
                                     <div class="form-group">
                                         <input type="number" name="percentage" id="setpercentage" class="form-control inputtext" placeholder="Percentage" required="">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Account Code <span style="color: red">*</span></label>
-                                    <div class="form-group">
-                                        <input type="" name="account_code" id="setaccount_code" class="form-control inputtext" placeholder="Account Code" required="">
                                     </div>
                                 </div>
                             </div>

@@ -25,7 +25,7 @@
                             @foreach($getopnbalances as $value)
                             <tr>
                                 <td style="text-align: center">{{ $value->project_desc }}</td>
-                                <td style="text-align: center">{{ $value->employee_id }}</td>
+                                <td style="text-align: center">{{ $value->employee_name }}</td>
                                 <td style="text-align: center">{{ $value->vdate }}</td>
                                 <td style="text-align: center">{{ $value->acc_name }}</td>
                                 <td style="text-align: center">{{ $value->init_bal }}</td>

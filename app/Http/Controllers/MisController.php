@@ -266,12 +266,12 @@ class MisController extends Controller
 /********************** Allowance Controller ************************ */
 
     public function allemployee_apidata() {
-        $response = Http::get("http://192.168.3.8:8085/ords/hrm/employees/v_emp?limit=1000");
+        $response = Http::get("http://192.168.3.10/ords/hrm/employees/v_emp?limit=1000");
         $decoded = json_decode($response, true);
         return $decoded;
     }
     public function single_empapidata($id) {
-        $response =$response = Http::get("http://192.168.3.8:8085/ords/hrm/employees/v_emp_all/" . $id);
+        $response =$response = Http::get("http://192.168.3.10/ords/hrm/employees/v_emp_all/" . $id);
         $decoded = json_decode($response, true);
         return $decoded;
     }
@@ -566,7 +566,7 @@ class MisController extends Controller
       /********************** Personal Info Controller ************************ */
       
       public function profile_apidata($param) {
-        $response = Http::get("http://192.168.3.8:8085/ords/hrm/employees/v_emp_all/" . $param);
+        $response = Http::get("http://192.168.3.10/ords/hrm/employees/v_emp_all/" . $param);
         $decoded = json_decode($response, true);
         return $decoded;
     }
@@ -756,7 +756,7 @@ class MisController extends Controller
 
 
         // public function employeetraning() {
-        //     $response = Http::get("http://192.168.3.8:8085/ords/hrm/emp_tra/v_emp_tra/e/576");
+        //     $response = Http::get("http://192.168.3.10/ords/hrm/emp_tra/v_emp_tra/e/576");
         //     $decoded = json_decode($response, true);
         //     return $decoded;
         // }
@@ -772,7 +772,7 @@ class MisController extends Controller
 
         /// Employee Traning Info
         public function employeetraning() {
-            $response = Http::get("http://192.168.3.8:8085/ords/hrm/emp_tra/v_emp_tra/e/576");
+            $response = Http::get("http://192.168.3.10/ords/hrm/emp_tra/v_emp_tra/e/576");
             $decoded = json_decode($response, true);
             return $decoded;
         }
@@ -787,11 +787,69 @@ class MisController extends Controller
 
 
 
+    ///****************** House Gadget ************************ */ 
+    public function houseGadgetManage() 
+    {
+        $data=[
+            'getHouseGadget'=>DB::table('FA_HOUSEGADGET')->leftJoin('FA_AREATYPE', 'FA_HOUSEGADGET.area_id', '=', 'FA_AREATYPE.areatype_id')->get(),
+            'getArea'=>DB::table('FA_AREATYPE')->get(),
+         ];
+        return view('layouts.mcsfa.houseGadget', $data);
+    }
+    
+    public function houseGadgetSaveUpdate(Request $request)
+    {
+        $taskstatus = $request->taskstatus;
+        $hg_id = $request->dataid;
+
+        $scales = explode("-", $request->basic_scale);
+        
+        $data = [
+            'basic_scale' => $request->basic_scale,
+            'scale_str' => $scales[0],
+            'sclae_end' => $scales[1],
+            'area_id' => $request->areatype_id,
+            'min_amount' => $request->min_amt,
+            'percentage' => $request->percentage
+        ];
+    
+        if($taskstatus == 'save') {
+            DB::table('FA_HOUSEGADGET')->insert($data);
+            $message = 'Saved'; 
+        }
+        else {
+            DB::table('FA_HOUSEGADGET')->where('hg_id', $hg_id)->update($data);
+            $message = 'Updated';
+        }
+        $notification = array(
+            'message' => "House Gadget Info $message Succesfully",
+            'alert-type' => 'success'
+        );
+        return redirect('/houserentmanage')->with($notification);
+    }
+    
+    public function editGadgetRent ($id) {
+        $result=DB::table('FA_HOUSEGADGET')->where('hg_id', $id)->first();
+        return response()->json($result);
+    }
+        
+    public function deleteGadgetRent($id)
+    {
+        DB::table('FA_HOUSEGADGET')->where('hg_id', $id)->delete();
+        $notification = array(
+            'message' => "House Gadget Info Deleted Succesfully",
+            'alert-type' => 'success'
+        );
+        return redirect('/houserentmanage')->with($notification);
+    }
+
+
     ///****************** House Rent ************************ */ 
     public function houseRentManage() 
     {
         $data=[
             'getHouseRent'=>DB::table('FA_HOUSERENT')->get(),
+            'getArea'=>DB::table('FA_AREATYPE')->get(),
          ];
         return view('layouts.mcsfa.houseRent', $data);
     }
@@ -840,10 +898,6 @@ class MisController extends Controller
         );
         return redirect('/houserentmanage')->with($notification);
     }
-
-
-
-
 
 
 
@@ -1118,7 +1172,7 @@ class MisController extends Controller
         // Salary Increment
         public function salaryincrement($employeeid) 
         {
-            $response = Http::get("http://192.168.3.8:8081/fa/singleemployeegradeapidata/" . $employeeid);
+            $response = Http::get("http://192.168.3.10/fa/singleemployeegradeapidata/" . $employeeid);
             $decoded = json_decode($response, true);
             $grades = explode("-",$decoded['fullscale']);
             $basic = $decoded['basic'];
@@ -1137,7 +1191,7 @@ class MisController extends Controller
         public function findbasic($employeeid) 
         {
             $basic = 0;
-            $response = Http::get("http://192.168.3.8:8085/ords/hrm/employees/v_all_emp_grade/" . $employeeid);
+            $response = Http::get("http://192.168.3.10/ords/hrm/employees/v_all_emp_grade/" . $employeeid);
             $decoded = json_decode($response, true);
             // date
             $join = explode('-', $decoded['items'][0]['joining_date']);
@@ -1176,7 +1230,7 @@ class MisController extends Controller
 
         public function taxcalculate($employeeid) {
             $rates = DB::table('FA_TAXRATE')->get();
-            $response = Http::get("http://192.168.3.8:8081/fa/singleemployeegradeapidata/" . $employeeid);
+            $response = Http::get("http://192.168.3.10/fa/singleemployeegradeapidata/" . $employeeid);
             $decoded = json_decode($response, true);
             $basic = $decoded['basic'];
 
@@ -1205,101 +1259,44 @@ class MisController extends Controller
             }
         }
 
-        // Tax Calculate function
-        // public function taxcalculate($employeeid) 
-        // {
 
-        //     $response = Http::get("http://192.168.3.8:8081/fa/singleemployeegradeapidata/" . $employeeid);
-        //     $decoded = json_decode($response, true);
-        //     $basic = $decoded['basic'];
+        // Set House Allowance For A Employee
+        public function setHouseAllowance($employeeId) {
+
+            $response = Http::get("http://192.168.3.10/fa/singleemployeegradeapidata/" . $employeeId);
+            $decoded = json_decode($response, true);
+
+            $areatype = DB::table('FA_LOCATION')->select('areatype_id')->where('location_name', $decoded['location'])->first();
+
+            // For others location
+            if(!@$areatype->areatype_id) {
+                $areatype = DB::table('FA_AREATYPE')->select('areatype_id')->where('areatype_name', 'Others')->first();
+            }
+
+            // if basic is null then basic set 0
+            if(!$decoded['basic']) {
+                $decoded['basic'] = 0;
+            }
+
+            $decoded['basic'] = (int)$decoded['basic'];
 
 
-        //     $total_basic = $basic*14;
-        //     $total_cpf_contrib = round((($basic*8.33)/100)*12);
 
-        //     $taxable_income = $total_basic + $total_cpf_contrib;
-        //     $total = $taxable_income;
+            $gadget = DB::table('FA_HOUSEGADGET')
+            ->where('scale_str', '<=', $decoded['basic'])
+            ->where('scale_end', '>=', $decoded['basic'])
+            ->where('area_id', $areatype->areatype_id)
+            ->first();
 
-        //     $taxamount = 0;
-        //     $monthbasistax = 0;
-            
-        //     if($total > 0) {
-        //         if($total < 300000) {
-        //             $taxamount += ($total*0)/100;
-        //         }
-        //         if($total >= 300000) {
-        //             $taxamount += (300000*0)/100;
-        //             $total = $total - 300000;
-        //             if($total > 0) {
-        //                 if($total < 100000) {
-        //                     $taxamount += ($total*5)/100;
-        //                 }
-        //                 if($total >= 100000) {
-        //                     $taxamount += (100000*5)/100;
-        //                     $total = $total - 100000;
-        //                     if($total > 0) {
-        //                         if($total < 300000) {
-        //                             $taxamount += round(($total*10)/100);
-        //                         }
-        //                         if($total >= 300000) {
-        //                             $taxamount += (300000*10)/100;
-        //                             $total = $total - 300000;
-        //                             if($total > 0) {
-        //                                 if($total < 400000) {
-        //                                     $taxamount += round(($total*15)/100);
-        //                                 }
-        //                                 if($total >= 400000) {
-        //                                     $taxamount += (400000*15)/100;
-        //                                     $total = $total - 400000;
-        //                                     if($total > 0) {
-        //                                         if($total < 500000) {
-        //                                             $taxamount += round(($total*20)/100);
-        //                                             $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
-        //                                         }
-        //                                         if($total >= 500000) {
-        //                                             $taxamount += (500000*20)/100;
-        //                                             $total = $total - 500000;
-        //                                             $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
-        //                                         }
-        //                                         else {
-        //                                             $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
-        //                                         }
-        //                                     } else {
-        //                                         $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
-        //                                     }
-        //                                 }
-        //                                 else {
-        //                                     $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
-        //                                 }
-        //                             } else {
-        //                                 $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
-        //                             }
-        //                         }
-        //                         else {
-        //                             $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
-        //                         }
-        //                     } else {
-        //                         $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
-        //                     }
-        //                 }
-        //                 else {
-        //                     $monthbasistax = $this->rivetcalculate($total_basic, $taxamount); 
-        //                 }
-        //             } else {
-        //                 $monthbasistax = $this->rivetcalculate($total_basic, $taxamount); 
-        //             }
-        //         } 
-        //         else {
-        //             $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
-        //         } 
-        //     } else {
-        //         $monthbasistax = $this->rivetcalculate($total_basic, $taxamount);
-        //     }
-        //     echo '<pre>';
-        //     print_r($monthbasistax);
-        //     exit();
-        // }
-
+            $percentWiseRentAmt = (($decoded['basic']/100)*$gadget->percentage);
+           
+            if($percentWiseRentAmt < $gadget->min_amount) {
+               
+                return $gadget->min_amount;
+            }
+           
+            return $percentWiseRentAmt;
+        }
 }
 
 

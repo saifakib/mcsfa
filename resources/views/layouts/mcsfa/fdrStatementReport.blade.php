@@ -54,11 +54,8 @@
                                     </tr>
                                 </thead>
                                 <tbody> 
-                                @foreach($getfdrbankinfo as $bvalue)
+                              
                                     <h3>Bank Name: {{$bvalue->bankname}}</h3>
-                                    @php
-                                    $getfdrinfo=DB::table('FA_FDRINFO')->orderBy('branchname','asc')->where('bankname',$bvalue->bankname)->get();
-                                    @endphp
                                         @foreach($getfdrinfo as $value)
                                         <tr>
                                             <td style="text-align: center">{{ $value->branchname }}</td>
@@ -85,7 +82,6 @@
                                             <td style="text-align: center">{{ $net_amount }}</td>
                                         </tr>
                                         @endforeach
-                                @endforeach
                                 </tbody>
                             </table>
 

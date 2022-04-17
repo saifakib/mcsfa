@@ -113,11 +113,17 @@ Route::get('/employeetraninginfo', [\App\Http\Controllers\MisController::class, 
 
 
 
-// House Rent Manage
-Route::get('/houserentmanage', [\App\Http\Controllers\MisController::class, 'houseRentManage']);
-Route::post('/houserentmanage', [\App\Http\Controllers\MisController::class, 'houseRentSaveUpdate'])->name('houseRentSaveUpdate');
-Route::get('/houserentmanage/{id}', [\App\Http\Controllers\MisController::class, 'editHouseRent']);
-Route::get('/deletehouserent/{id}', [\App\Http\Controllers\MisController::class, 'deleteHouseRent']);
+// // House Rent Manage
+// Route::get('/houserentmanage', [\App\Http\Controllers\MisController::class, 'houseRentManage']);
+// Route::post('/houserentmanage', [\App\Http\Controllers\MisController::class, 'houseRentSaveUpdate'])->name('houseRentSaveUpdate');
+// Route::get('/houserentmanage/{id}', [\App\Http\Controllers\MisController::class, 'editHouseRent']);
+// Route::get('/deletehouserent/{id}', [\App\Http\Controllers\MisController::class, 'deleteHouseRent']);
+
+// House Gadget Manage
+Route::get('/houserentmanage', [\App\Http\Controllers\MisController::class, 'houseGadgetManage']);
+Route::post('/houserentmanage', [\App\Http\Controllers\MisController::class, 'houseGadgetSaveUpdate'])->name('houseGadgetSaveUpdate');
+Route::get('/houserentmanage/{id}', [\App\Http\Controllers\MisController::class, 'editGadgetRent']);
+Route::get('/deletehouserent/{id}', [\App\Http\Controllers\MisController::class, 'deleteGadgetRent']);
 
 
 
@@ -204,10 +210,6 @@ Route::get('fdrStatementReport-pdf', [\App\Http\Controllers\CPFController::class
 
 
 
-
-
-
-
 // Salary Bill
 Route::get('/salaryBill', [\App\Http\Controllers\AccountsController::class, 'salaryBill']);
 
@@ -252,3 +254,6 @@ Route::get('/taxcalculate/{employeeid}', [\App\Http\Controllers\MisController::c
 
 // find basic salary
 Route::get('/findbasic/{employeeid}', [\App\Http\Controllers\MisController::class, 'findbasic']);
+
+
+Route::get('/sethouseallowance/{employeeid}', [\App\Http\Controllers\MisController::class, 'setHouseAllowance']);
