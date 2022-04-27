@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\HTTP;
+use AmrShawky\LaravelCurrency\Facade\Currency;
 
 class AccountsController extends Controller
 {
@@ -53,5 +54,33 @@ class AccountsController extends Controller
     //****************Salary Statement ****************** */
     public function salaryStatement() {
         return view('layouts.mcsfa.satest');
+    }
+
+
+
+    //*****************  Leadge **************************//
+    public function viewleadge() {
+        return view('leadgeStatement');
+    }
+
+
+    //*********Currecncy Converter*************** */
+
+    public function currencyConverter() 
+    {
+        return view('layouts.mcsfa.currencyConverter');
+    }
+    public function postcurrencyConverter(Request $request) 
+    {
+        $from = $request->get('from');
+        $to = $request->get('to');
+        $amount= $request->get('amount');
+
+        $converted=Currency::convert()
+            ->from($from)
+            ->to($to)
+            ->amount($amount)
+            ->get();
+        return $converted;
     }
 }

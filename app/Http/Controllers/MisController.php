@@ -1223,8 +1223,6 @@ class MisController extends Controller
                 $taketax = 5000;
             }
             $taketax = round($taketax/12);
-            // echo '<pre>';
-            // print_r($taketax);
             return $taketax;
         }
 

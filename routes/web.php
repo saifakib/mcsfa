@@ -257,3 +257,13 @@ Route::get('/findbasic/{employeeid}', [\App\Http\Controllers\MisController::clas
 
 
 Route::get('/sethouseallowance/{employeeid}', [\App\Http\Controllers\MisController::class, 'setHouseAllowance']);
+
+
+// Extra
+Route::get('/viewleadge', [\App\Http\Controllers\AccountsController::class, 'viewleadge']);
+
+
+// Currenct Converter
+Route::get('/currencyConverter', [\App\Http\Controllers\AccountsController::class, 'currencyConverter']);
+Route::get('/currencyConverterCH', [\App\Http\Controllers\AccountsController::class, 'postcurrencyConverter']);
+
