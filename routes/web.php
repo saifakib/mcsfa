@@ -216,6 +216,7 @@ Route::get('/salaryBill', [\App\Http\Controllers\AccountsController::class, 'sal
 
 // Salary Statement
 Route::get('/salaryStatement', [\App\Http\Controllers\AccountsController::class, 'salaryStatement']);
+Route::get('/allsalarystatement', [\App\Http\Controllers\AccountsController::class, 'allsalarystatement']);
 
 
 // Set allowance to a employee
@@ -267,3 +268,7 @@ Route::get('/viewleadge', [\App\Http\Controllers\AccountsController::class, 'vie
 Route::get('/currencyConverter', [\App\Http\Controllers\AccountsController::class, 'currencyConverter']);
 Route::get('/currencyConverterCH', [\App\Http\Controllers\AccountsController::class, 'postcurrencyConverter']);
 
+
+
+// Reconcillation Page design
+Route::get('/reconcillation', [\App\Http\Controllers\AccountsController::class, 'reconcillation']);

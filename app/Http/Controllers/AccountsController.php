@@ -55,6 +55,25 @@ class AccountsController extends Controller
     public function salaryStatement() {
         return view('layouts.mcsfa.satest');
     }
+    public function allsalarystatement(Request $request) {
+        // $month = $request->month . '-' . date('Y');
+        // $task = $request->task;
+        //$result = DB::table('FA_SALARY')->where('salalrymonth', $month)->count();
+        // if ($result == 0) {
+        //     $notification = array(
+        //         'message' => "Result Not Found!",
+        //         'alert-type' => 'error'
+        //     );
+        //     return redirect('/')->with($notification);
+        // }
+        $month = 'April-2022';
+        $data = [
+            'month' => $month,
+            'monthdata' => $month,
+            'salarystatement' => DB::table('FA_SALARY')->where('salalrymonth', $month)->get(),
+        ];
+        return view('layouts.mcsfa.monthstate', $data);
+    }
 
 
 
@@ -82,5 +101,12 @@ class AccountsController extends Controller
             ->amount($amount)
             ->get();
         return $converted;
+    }
+
+
+
+    /*********Reconcillation Page Design*************/
+    public function reconcillation() {
+        return view('layouts.mcsfa.reconcillation');
     }
 }
