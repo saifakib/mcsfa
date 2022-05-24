@@ -272,3 +272,15 @@ Route::get('/currencyConverterCH', [\App\Http\Controllers\AccountsController::cl
 
 // Reconcillation Page design
 Route::get('/reconcillation', [\App\Http\Controllers\AccountsController::class, 'reconcillation']);
+
+// Reconcillation Page design
+Route::get('/cashflow', [\App\Http\Controllers\AccountsController::class, 'cashflow']);
+
+
+// Trial Balance Page design
+Route::get('/trialbalance', [\App\Http\Controllers\AccountsController::class, 'trialbalance']);
+Route::get('/trialbalance2', [\App\Http\Controllers\AccountsController::class, 'trialbalance2']);
+
+
+// Balance Sheet
+Route::get('/balancesheet', [\App\Http\Controllers\AccountsController::class, 'balancesheet']);

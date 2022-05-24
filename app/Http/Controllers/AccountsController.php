@@ -109,4 +109,55 @@ class AccountsController extends Controller
     public function reconcillation() {
         return view('layouts.mcsfa.reconcillation');
     }
-}
+
+    //********Cash Flow  *********************/
+    public function cashflow() {
+        return view('layouts.mcsfa.cashflow');
+    }
+
+    //********** Trial Balance ***************/
+    public function trialbalance() {
+        return view('layouts.mcsfa.trialbalance');
+    }
+
+    public function trialbalance2() {
+
+        $result = DB::table('FA_VOUCHERSALT')
+        ->get()
+        ->groupBy('pcode')
+        ->groupBy('ccode')
+        ->groupBy('scode');
+        // foreach($result as $value){
+        //     echo $value->scode.'<br>';
+        // }
+
+        echo '<pre>';
+        print_r($result);
+        exit();
+        $data = [
+            'codes'=>$result
+        ];
+        return view('layouts.mcsfa.trialbalance', $data);
+    }
+
+    public function balancesheet() {
+        // $response = DB::table('FA_VOUCHERSALT')
+        // ->where('voucher_coapc', 1000000)
+        // ->get()
+        // ->groupBy('voucher_coacc');
+
+        $response = DB::table('FA_VOUCHERSALT')
+        ->where('voucher_coapc', 2000000)
+        ->get()
+        ->groupBy('voucher_coacc');
+        
+
+        $response = json_decode($response);
+
+        echo '<pre>';
+        print_r($response);
+        //print_r(gettype($response));
+        exit();
+    }
+ }
+ 
